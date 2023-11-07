@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: your-dockerhub-username/Endless-Winter:latest
+    env_file:
+      - Endless-Winter-env
+    ports:
+      - "3000:3000"
