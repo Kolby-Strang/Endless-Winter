@@ -8,9 +8,22 @@ export class FavoritesController extends BaseController {
         this.router
 
             .use(Auth0Provider.getAuthorizedUserInfo)
+            .post('', this.createFavorite)
 
     }
 
+    async createFavorite(req, res, next) {
+        try {
+            const userId = req.userInfo.id
+            const favoriteData = req.body
+            favoriteData.accountId = userId
+            const favorite = await favoritesService.createFavorite(favoriteData)
+            res.send(favorite)
 
+        } catch (error) {
+            next(error)
+        }
+
+    }
 
 }
