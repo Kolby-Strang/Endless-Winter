@@ -8,7 +8,10 @@ import { onMounted } from "vue";
 export default {
   setup() {
     function backgroundImage(imgUrl){
-      document.getElementById('body').style.backgroundImage = `url('${imgUrl}')`
+      const body = document.getElementById('body')
+      body.style.backgroundImage = `url('${imgUrl}')`
+      body.style.backgroundSize = 'cover'
+      body.style.backgroundPosition = 'center'
     }
     onMounted(()=>{
       backgroundImage('src/assets/img/hero.jpg')

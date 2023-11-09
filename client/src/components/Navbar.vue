@@ -17,7 +17,7 @@
       <div class="col-8 d-flex justify-content-center">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+        <h1 class="endless-winter-font">Endless Winter</h1>
       </div>
     </router-link>
   </div>
@@ -49,6 +49,9 @@ a:hover {
   text-shadow: -2px 2px  rgba(0, 0, 0, 0.463);
 }
 
+.endless-winter-font{
+  font-family: 'Kaushan Script', cursive;
+}
 
 .searchBar {
   background-color: rgba(39, 36, 84, 0.15);
