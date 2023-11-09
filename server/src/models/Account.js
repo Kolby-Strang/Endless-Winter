@@ -7,7 +7,7 @@ export const AccountSchema = new Schema(
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
     picture: { type: String },
-    resortAdmin: { type: Schema.Types.ObjectId },
+    resortAdmin: { type: Number },
     isOwner: { type: Boolean, required: true, default: false },
     skier: { type: Boolean, required: true, default: false },
     snowBoarder: { type: Boolean, required: true, default: false }
