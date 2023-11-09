@@ -19,7 +19,7 @@ class ResortsService {
         return resort
     }
     async createResort(resortData, userId) {
-        if (userId.toString() != '65330f5800fc89b954fa12ed') {
+        if (userId.toString() != '65330f5800fc89b954fa12ed' || userId.toString() != '654d097a65a6c62eb78efa9e' || userId.toString() != '654d19de2e715a5aa6409d05') {
             throw new UnAuthorized('You are not a Endless Winter Admin')
         }
         const resort = await dbContext.Resort.create(resortData)
