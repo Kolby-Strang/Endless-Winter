@@ -4,6 +4,12 @@
       <p v-if="account.id">Welcome, {{ account.name }}</p>
       <p v-else>Welcome, user</p>
     </div>
+    <div class="col-4 text-light mt-5 p-5">
+      <div class="mt-5 p-2 resort-card rounded">
+      <h3>{{ resort.resortName }}</h3>
+      <i class="mdi mdi-gondola fs-2"></i>
+    </div>
+    </div>
   </section>
 </template>
 
@@ -28,13 +34,18 @@ export default {
       getResortBogus()
     })
     return {
-      account: computed(()=> AppState.account)
+      account: computed(()=> AppState.account),
+      resort: computed(()=> AppState.pinedResort)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+.resort-card{
+  background-color: rgba(41, 38, 87, 0.493);
+  backdrop-filter: blur(4px);
+}
 .fs-super-big{
   font-size: 5rem;
   text-shadow: -8px -6px rgba(0, 0, 0, 0.15);

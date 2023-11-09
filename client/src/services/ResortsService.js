@@ -11,7 +11,7 @@ class ResortsService{
     resort.address = res2.data.address
     resort.resortImg = res2.data.resortImg
     resort.trailImg = res2.data.trailImg
-    AppState.resorts = resort
+    AppState.pinedResort = resort
   }
 }
 
