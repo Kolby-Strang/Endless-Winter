@@ -51,6 +51,7 @@ a:hover {
 
 .endless-winter-font{
   font-family: 'Kaushan Script', cursive;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .searchBar {
