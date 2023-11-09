@@ -9,7 +9,18 @@ export class FavoritesController extends BaseController {
 
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createFavorite)
+            .delete('/:favoriteId', this.destroyFavorite)
 
+    }
+    async destroyFavorite(req, res, next) {
+        try {
+            const userId = req.userInfo.id
+            const favoriteId = req.params.favoriteId
+            const message = await favoritesService.destroyFavorite(favoriteId, userId)
+            res.send(message)
+        } catch (error) {
+            next(error)
+        }
     }
 
     async createFavorite(req, res, next) {
