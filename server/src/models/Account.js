@@ -6,8 +6,11 @@ export const AccountSchema = new Schema(
     subs: [{ type: String, unique: true }],
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
-    picture: { type: String }
-    // NOTE If you wish to add additional properties do so here
+    picture: { type: String },
+    resortAdmin: { type: Schema.Types.ObjectId },
+    isOwner: { type: Boolean, required: true, default: false },
+    skier: { type: Boolean, required: true, default: false },
+    snowBoarder: { type: Boolean, required: true, default: false }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
