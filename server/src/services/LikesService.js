@@ -27,5 +27,10 @@ class LikesService {
 
     }
 
+    async getLikesByThingId(thingId) {
+        const likes = await dbContext.Like.find({ thingId })
+        return likes
+    }
+
 }
 export const likesService = new LikesService()

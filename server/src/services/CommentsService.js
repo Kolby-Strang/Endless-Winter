@@ -27,7 +27,7 @@ class CommentsService {
         return 'Comment Deleted'
     }
     async getCommentsByThingId(thingId) {
-        const comments = await dbContext.Comment.find({ thingId })
+        const comments = await dbContext.Comment.find({ thingId }).populate('account', 'id name picture')
         return comments
     }
     async createComment(commentData) {
