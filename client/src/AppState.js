@@ -5,5 +5,6 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
-pinedResort: {}
+  /** @type {import('./models/Resort.js').Resort} */
+  pinedResort: {}
 })
