@@ -2,12 +2,13 @@
   <nav class="row navbar navbar-expand-lg navbar-dark bg-none px-3 justify-content-end">
     <div class="col-2 d-flex align-items-center ">
       <div class="fs-1 ">
-      <i class="mdi mdi-magnify "></i>
+      <i @click="submitSearch()" class="mdi mdi-magnify " title="Submit Search" role="button"></i>
     </div>
     
       <div >
-  <input type="text" class="form-control rounded-pill searchBar text-light" id="formGroupExampleInput" placeholder="Search">
-</div>
+          <input v-model="editable.search" type="text" class="form-control rounded-pill searchBar text-light" id="formGroupExampleInput" placeholder="Search">
+
+        </div>
       <!-- <form class="form-floating searchBar">
         <input type="email" class=" rounded-pill  p-0" id="floatingInputInvalid" placeholder="" >
         <label for="floatingInputInvalid ">search</label>
@@ -32,9 +33,19 @@
 
 <script>
 import Login from './Login.vue';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   setup() {
-    return {}
+    const router = useRouter()
+    const editable = ref({})
+    return {
+      editable,
+      submitSearch() {
+    router.push('Search')
+      }
+
+    }
   },
   components: { Login }
 }
