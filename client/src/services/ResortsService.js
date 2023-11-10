@@ -1,6 +1,5 @@
 import { AppState } from "../AppState.js"
 import { Resort } from "../models/Resort.js"
-import { logger } from "../utils/Logger.js"
 import { api, resortsApi } from "./AxiosService.js"
 
 class ResortsService {

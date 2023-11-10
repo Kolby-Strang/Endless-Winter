@@ -19,8 +19,6 @@
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
 import { Resort } from "../models/Resort.js";
 export default {
   props:{
