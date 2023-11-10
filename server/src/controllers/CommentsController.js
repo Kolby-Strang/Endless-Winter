@@ -9,7 +9,18 @@ export class CommentsController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createComment)
             .delete('/:commentId', this.destroyComment)
-        // TODO EDIT COMMENTS
+            .put('/:commentId', this.editComment)
+    }
+    async editComment(req, res, next) {
+        try {
+            const userId = req.userInfo.id
+            const commentId = req.params.commentId
+            const commentData = req.body
+            const comment = await commentsService.editComment(commentData, commentId, userId)
+            return res.send(comment)
+        } catch (error) {
+            next(error)
+        }
     }
     async createComment(req, res, next) {
         try {
