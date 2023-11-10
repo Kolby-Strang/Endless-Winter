@@ -7,7 +7,7 @@
     <div class="col-4 text-light mt-5 p-5">
       <div class="mt-5 p-2 resort-card rounded">
       <h3>{{ resort.resortName }}</h3>
-      <i class="mdi mdi-gondola fs-2"></i>
+      <span class="d-flex align-items-center" :title="resort.openDownHillLifts+'/'+resort.maxOpenDownHillLifts"><i class="mdi mdi-gondola fs-2 p-1"></i> <div class="bg-light bar rounded-pill"><p class="mb-0" :style="{width: resort.openDownHillLiftsPercentage+'%'}"></p></div></span>
     </div>
     </div>
   </section>
@@ -35,13 +35,17 @@ export default {
     })
     return {
       account: computed(()=> AppState.account),
-      resort: computed(()=> AppState.pinedResort)
+      resort: computed(()=> AppState.pinedResort),
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+.bar{
+  height: 20px;
+  width: 150px;
+}
 .resort-card{
   background-color: rgba(41, 38, 87, 0.493);
   backdrop-filter: blur(4px);
