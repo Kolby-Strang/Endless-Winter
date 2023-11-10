@@ -10,7 +10,7 @@
           id="formGroupExampleInput" placeholder="Search">
 
         <div class="position-relative" v-if="editable">
-          <div class="position-absolute">
+          <div class="position-absolute bg-light reactive-search">
             <div>Results {{ resorts.length }}</div>
             <div v-for="r in resorts" :key="r.id">
               {{ r.resortName }}
@@ -114,6 +114,11 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.reactive-search{
+  max-height: 50vh;
+  overflow-y: scroll;
 }
 
 @media screen and (min-width: 768px) {
