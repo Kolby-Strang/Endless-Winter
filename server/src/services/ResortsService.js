@@ -15,7 +15,7 @@ class ResortsService {
         resort.trailImg = updateBody.trailImg || resort.trailImg
         resort.resortImg = updateBody.resortImg || resort.resortImg
         resort.address = updateBody.address || resort.address
-        resort.save()
+        await resort.save()
         return resort
     }
     async createResort(resortData, userId) {
