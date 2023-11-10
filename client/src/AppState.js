@@ -1,5 +1,6 @@
 import { reactive } from 'vue'
 import { can } from './json/canada.js'
+import { usa } from "./json/usa.js"
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -8,5 +9,5 @@ export const AppState = reactive({
   account: {},
   /** @type {import('./models/Resort.js').Resort} */
   pinedResort: {},
-  resorts: [...can]
+  resorts: [...can, ...usa]
 })
