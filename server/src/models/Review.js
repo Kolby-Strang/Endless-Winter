@@ -10,4 +10,5 @@ export const ReviewSchema = new Schema({
     timestamps: true,
     toJSON: { virtuals: true }
 })
-// TODO MAKE IT SO YOU ONLY CAN MAKE 1 REVIEW PER RESORT PER PERSON
+
+ReviewSchema.index({ accountId: 1, snoId: 1 }, { unique: true })

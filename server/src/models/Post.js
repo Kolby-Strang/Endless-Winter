@@ -5,7 +5,7 @@ export const PostSchema = new Schema({
   snoId: { type: Number, required: true },
   body: { type: String, required: true, maxLength: 500 },
   title: { type: String, required: true, maxLength: 100 },
-  imgUrl: { type: String, required: true, maxLength: 500 }
+  imgUrl: { type: String, maxLength: 500 }
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
