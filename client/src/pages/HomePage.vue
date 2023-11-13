@@ -5,7 +5,7 @@
       <p v-else>Welcome, user</p>
     </div>
     <div class="col-12 col-md-8 col-lg-6 col-xxl-4 text-light mt-5 p-3 p-md-5">
-      <router-link v-if="resort.id" class="text-light" :to="{name: 'ResortDetails', params: {resortId: resort.id} }">
+      <router-link v-if="resort.id" class="text-light" :to="{name: 'Reviews', params: {resortId: resort.id} }">
         <FavoriteResortCard :resort="resort"/>
       </router-link>,
       </div>

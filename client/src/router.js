@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { authGuard } from '@bcwdev/auth0provider-client'
-
+import EventsChildRoute from '../src/components/EventsChildRoute.vue'
+import ReviewsChildRoute from '../src/components/ReviewsChildRoute.vue'
+import MountainChatChildRoute from '../src/components/MountainChatChildRoute.vue'
 function loadPage(page) {
   return () => import(`./pages/${page}.vue`)
 }
@@ -26,6 +28,27 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: loadPage('SearchPage'),
+  },
+  {
+    path: '/resort/:resortId',
+    name: 'Resort',
+    component: loadPage('ResortPage'),
+    children: [
+      {
+      path: 'events',
+      name: 'Events',
+      component: EventsChildRoute
+    },
+    {
+      path: 'reviews',
+      name: 'Reviews',
+      component: ReviewsChildRoute
+    },
+    {
+      path: 'chat',
+      name: 'Chat',
+      component: MountainChatChildRoute
+    }]
   },
   {
     path: '/resortDetails/:resortId',
