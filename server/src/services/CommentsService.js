@@ -32,11 +32,13 @@ class CommentsService {
     }
     async getCommentsByThingId(thingId) {
         const comments = await dbContext.Comment.find({ thingId }).populate('account', 'id name picture').populate('likes')
+        // @ts-ignore
         comments.forEach(comment => comment.likes = comment.likes.map(like => like.accountId))
         return comments
     }
     async createComment(commentData) {
         const comment = await dbContext.Comment.create(commentData)
+        // @ts-ignore
         comment.likes = []
         return comment
     }

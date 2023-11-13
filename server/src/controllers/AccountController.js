@@ -10,8 +10,17 @@ export class AccountController extends BaseController {
     this.router
       .get('/:accountId/favorites', this.getFavoritesByAccountId)
       .get('/:accountId/posts', this.getPostsByAccountId)
+      .get('/:accountId', this.getAccountById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+  }
+  async getAccountById(req, res, next) {
+    try {
+      const account = await accountService.getAccount({ id: req.params.accountId })
+      return res.send(account)
+    } catch (error) {
+      next(error)
+    }
   }
   async getPostsByAccountId(req, res, next) {
     try {
