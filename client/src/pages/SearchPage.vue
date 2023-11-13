@@ -5,7 +5,7 @@
     </div>
     <div v-for="r in resorts" :key="r.id" class="col-10 resort-card rounded mb-2">
       <router-link :to="{name: 'ResortDetails' }">
-      <section class="row text-light  ">
+      <section class="row text-light ">
         <div class="col-6 text-start">
           <p class="fs-2">
             {{ r.resortName }}
@@ -69,7 +69,8 @@ export default {
 }
 
 .scrollable{
-  height: 100vh;
+  height: max-content;
+  max-height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
