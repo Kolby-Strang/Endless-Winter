@@ -37,15 +37,15 @@
     </div>
     <!-- !SECTION -->
     <div class="col-11 mt-5">
-      <section class="row filter-background rounded text-center">
+      <section class="row filter-background rounded text-center py-3">
         <div class="col-4">
-          <p class="fs-1 ">reviews</p>
+          <p class="fs-1 mb-0">reviews</p>
         </div>
         <div class="col-4">
-          <p class="fs-1">events</p>
+          <p class="fs-1 mb-0">events</p>
         </div>
         <div class="col-4">
-          <p class="fs-1">mountain chat</p>
+          <p class="fs-1 mb-0">mountain chat</p>
         </div>
       </section>
     </div>
