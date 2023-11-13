@@ -6,17 +6,17 @@
       </div>
 
       <div>
-        <input v-model="editable" type="text" class="form-control rounded-pill searchBar text-light"
+        <input v-model="editable.search" type="text" class="form-control rounded-pill searchBar text-light"
           id="formGroupExampleInput" placeholder="Search">
 
-        <div class="position-relative" v-if="editable">
+        <!-- <div class="position-relative" v-if="editable">
           <div class="position-absolute bg-light reactive-search">
             <div>Results {{ resorts.length }}</div>
             <div v-for="r in resorts" :key="r.id">
               {{ r.resortName }}
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
       <!-- <form class="form-floating searchBar">
@@ -49,21 +49,21 @@ import { AppState } from '../AppState.js';
 export default {
   setup() {
     const router = useRouter()
-    const editable = ref('')
+    const editable = ref({})
     return {
       editable,
-      resorts: computed(() => {
-        if (!editable.value.length) { return AppState.resorts }
+      // resorts: computed(() => {
+      //   if (!editable.value.length) { return AppState.resorts }
 
-        const reg = new RegExp(editable.value, 'ig')
+      //   const reg = new RegExp(editable.value, 'ig')
 
-        return AppState.resorts.filter(r => {
-          return reg.test(r.resortName + ' ' + r.state + ' ' + r.region)
-        })
+      //   return AppState.resorts.filter(r => {
+      //     return reg.test(r.resortName + ' ' + r.state + ' ' + r.region)
+      //   })
 
-      }),
+      // }),
       submitSearch() {
-        router.push('Search')
+        router.push({to:'search',query:editable.value})
       }
 
     }
