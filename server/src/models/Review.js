@@ -21,3 +21,8 @@ ReviewSchema.virtual('account', {
     justOne: true
 })
 
+ReviewSchema.virtual('likes', {
+    localField: '_id',
+    foreignField: 'thingId',
+    ref: 'Like'
+})

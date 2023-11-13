@@ -15,3 +15,9 @@ CommentSchema.virtual('account', {
     ref: "Account",
     justOne: true
 })
+
+CommentSchema.virtual('likes', {
+    localField: '_id',
+    foreignField: 'thingId',
+    ref: 'Like'
+})

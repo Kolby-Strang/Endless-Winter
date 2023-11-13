@@ -10,3 +10,5 @@ export const LikeSchema = new Schema({
 })
 
 LikeSchema.index({ accountId: 1, thingId: 1 }, { unique: true })
+
+
