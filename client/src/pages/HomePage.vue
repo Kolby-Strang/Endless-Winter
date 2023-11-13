@@ -1,6 +1,6 @@
 <template>
   <section class="row">
-    <div class="col-12 p-5 text-light fw-bold fs-super-big text-center">
+    <div class="col-12 p-5 title-font text-center">
       <p v-if="account.id">Welcome, {{ account.name }}</p>
       <p v-else>Welcome, user</p>
     </div>
@@ -64,5 +64,11 @@ export default {
       object-position: center;
     }
   }
+}
+.title-font{
+  color: white;
+  font-weight: bold;
+  font-size: 55pt;
+  text-shadow: -7px 7px 0 rgba(0, 0, 0, 0.31);
 }
 </style>
