@@ -41,7 +41,10 @@ async function mergeSubsIfNeeded(account, user) {
 function sanitizeBody(body) {
   const writable = {
     name: body.name,
-    picture: body.picture
+    picture: body.picture,
+    skier: body.skier,
+    snowBoarder: body.snowBoarder,
+    pinnedFavorite: body.pinnedFavorite
   }
   return writable
 }
@@ -70,6 +73,17 @@ class AccountService {
       throw new BadRequest(`There are no accounts with Id: ${accountId}`)
     }
     await account.populate('favorites')
+    // TODO TEST THIS
+    // @ts-ignore
+    const pinnedFavoriteIndex = account.favorites.findIndex(favorite => favorite.snoId == account.pinnedFavorite)
+    if (pinnedFavoriteIndex != -1) {
+      // @ts-ignore
+      const pinnedFavorite = account.favorites[pinnedFavoriteIndex]
+      // @ts-ignore
+      account.favorites.splice(pinnedFavoriteIndex, 1)
+      // @ts-ignore
+      account.favorites.unshift(pinnedFavorite)
+    }
     return account
   }
 
