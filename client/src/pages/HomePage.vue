@@ -1,6 +1,6 @@
 <template>
   <section class="row">
-    <div class="col-12 p-5 title-font text-center">
+    <div class="col-12 p-5 title-font text-center d-sm-none d-md-block">
       <p v-if="account.id">Welcome, {{ account.name }}</p>
       <p v-else>Welcome, user</p>
     </div>
