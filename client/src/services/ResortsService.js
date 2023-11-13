@@ -3,7 +3,7 @@ import { Resort } from "../models/Resort.js"
 import { api, resortsApi } from "./AxiosService.js"
 
 class ResortsService {
-  async getResortbyId(resortId) {
+  async getResortById(resortId) {
     const res = await resortsApi.get(`/getSnowReport.php`, { params: { ids: resortId } })
     const resort = new Resort(res.data.items[0])
     const res2 = await api.get(`api/resorts/${resortId}`)

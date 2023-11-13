@@ -48,9 +48,12 @@ const routes = [
       path: 'chat',
       name: 'Chat',
       component: MountainChatChildRoute
-    }
-    
-  ]
+    }]
+  },
+  {
+    path: '/resortDetails/:resortId',
+    name: 'ResortDetails',
+    component: loadPage('ResortDetailsPage'),
   }
 ]
 
