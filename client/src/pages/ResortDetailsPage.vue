@@ -1,5 +1,5 @@
 <template>
-  <section class="row justify-content-center">
+  <section class="row justify-content-center margin">
     <!-- SECTION resort details card -->
     <div class="col-10">
       <section class="row p-1 background-blur rounded">
@@ -57,5 +57,9 @@ export default {
 .background-blur {
   background-color: rgba(41, 38, 87, 0.493);
   backdrop-filter: blur(4px);
+}
+
+.margin {
+  margin-top: 5rem;
 }
 </style>
