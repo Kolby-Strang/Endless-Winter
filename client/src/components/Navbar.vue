@@ -43,9 +43,8 @@
 
 <script>
 import Login from './Login.vue';
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { AppState } from '../AppState.js';
 export default {
   setup() {
     const router = useRouter()
@@ -63,7 +62,7 @@ export default {
 
       // }),
       submitSearch() {
-        router.push({to:'search',query:editable.value})
+        router.push({name:'Search',query:editable.value})
       }
 
     }
