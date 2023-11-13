@@ -5,8 +5,10 @@
       <p v-else>Welcome, user</p>
     </div>
     <div class="col-12 col-md-8 col-lg-6 col-xxl-4 text-light mt-5 p-3 p-md-5">
-      <FavoriteResortCard :resort="resort"/>
-    </div>
+      <router-link class="text-light" :to="{name: 'ResortDetails' }">
+        <FavoriteResortCard :resort="resort"/>
+      </router-link>
+      </div>
   </section>
 </template>
 

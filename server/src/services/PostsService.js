@@ -36,7 +36,7 @@ class PostsService {
     return posts
   }
   getPostsByResortId(snoId) {
-    const posts = dbContext.Post.find({ snoId })
+    const posts = dbContext.Post.find({ snoId }).populate('account', 'name picture id')
     return posts
   }
   async createPost(postData) {

@@ -26,6 +26,11 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: loadPage('SearchPage'),
+  },
+  {
+    path: '/resortDetails',
+    name: 'ResortDetails',
+    component: loadPage('ResortDetailsPage'),
   }
 ]
 

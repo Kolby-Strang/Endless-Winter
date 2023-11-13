@@ -17,7 +17,9 @@ class ReviewsService {
         return review
     }
     async getReviewsByResortId(snoId) {
-        const reviews = await dbContext.Review.find({ snoId })
+        const reviews = await dbContext.Review.find({ snoId }).populate('account', 'name id picture').populate('likes')
+        // @ts-ignore
+        reviews.forEach(review => review.likes = review.likes.map(like => like.accountId))
         return reviews
     }
     async createReview(reviewData) {
