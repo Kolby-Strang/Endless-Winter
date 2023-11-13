@@ -28,7 +28,7 @@ const routes = [
     component: loadPage('SearchPage'),
   },
   {
-    path: '/resortDetails',
+    path: '/resortDetails/:resortId',
     name: 'ResortDetails',
     component: loadPage('ResortDetailsPage'),
   }

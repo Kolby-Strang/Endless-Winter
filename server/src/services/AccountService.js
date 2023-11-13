@@ -1,4 +1,5 @@
 import { dbContext } from '../db/DbContext'
+import { BadRequest } from '../utils/Errors.js'
 
 // Private Methods
 
@@ -10,7 +11,7 @@ import { dbContext } from '../db/DbContext'
 async function createAccountIfNeeded(account, user) {
   if (!account) {
     user._id = user.id
-    if(typeof user.name == 'string' && user.name.includes('@')){
+    if (typeof user.name == 'string' && user.name.includes('@')) {
       user.name = user.nickname
     }
     account = await dbContext.Account.create({
@@ -40,7 +41,10 @@ async function mergeSubsIfNeeded(account, user) {
 function sanitizeBody(body) {
   const writable = {
     name: body.name,
-    picture: body.picture
+    picture: body.picture,
+    skier: body.skier,
+    snowBoarder: body.snowBoarder,
+    pinnedFavorite: body.pinnedFavorite
   }
   return writable
 }
@@ -60,6 +64,26 @@ class AccountService {
     })
     account = await createAccountIfNeeded(account, user)
     await mergeSubsIfNeeded(account, user)
+    return account
+  }
+
+  async getAccountById(accountId) {
+    const account = await dbContext.Account.findById(accountId)
+    if (!account) {
+      throw new BadRequest(`There are no accounts with Id: ${accountId}`)
+    }
+    await account.populate('favorites')
+    // TODO TEST THIS
+    // @ts-ignore
+    const pinnedFavoriteIndex = account.favorites.findIndex(favorite => favorite.snoId == account.pinnedFavorite)
+    if (pinnedFavoriteIndex != -1) {
+      // @ts-ignore
+      const pinnedFavorite = account.favorites[pinnedFavoriteIndex]
+      // @ts-ignore
+      account.favorites.splice(pinnedFavoriteIndex, 1)
+      // @ts-ignore
+      account.favorites.unshift(pinnedFavorite)
+    }
     return account
   }
 

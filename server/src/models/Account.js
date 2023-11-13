@@ -10,8 +10,14 @@ export const AccountSchema = new Schema(
     resortAdmin: { type: Number },
     isOwner: { type: Boolean, required: true, default: false },
     skier: { type: Boolean, required: true, default: false },
-    snowBoarder: { type: Boolean, required: true, default: false }
+    snowBoarder: { type: Boolean, required: true, default: false },
+    pinnedFavorite: { type: Number, required: true, default: '' }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
+AccountSchema.virtual('favorites', {
+  localField: '_id',
+  foreignField: 'accountId',
+  ref: 'Favorite'
+})

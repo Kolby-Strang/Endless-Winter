@@ -5,7 +5,8 @@
       <div class=" p-2 ">
       <h3 class="mb-0">{{ resort.resortName }}</h3>
       <p class="mb-0">{{ resort.operatingStatus }}</p>
-      <span class="d-flex align-items-center" :title="resort.openDownHillLifts+'/'+resort.maxOpenDownHillLifts"><i class="mdi mdi-gondola fs-2 p-1"></i> <div class="bar rounded-pill" :style="{background:'linear-gradient(90deg, rgba(39,36,84,1) '+resort.openDownHillLiftsPercentage+'%, rgba(255,255,255,1) '+resort.openDownHillLiftsPercentage+'%)'}"></div></span>
+      <PercentageBar :resort="resort" />
+      
     </div>
     <p class="mb-0">{{ resort.snowComments }}</p>
     <p class="">{{ resort.primarySurfaceCondition }}</p>
@@ -21,13 +22,15 @@
 
 <script>
 import { Resort } from "../models/Resort.js";
+import PercentageBar from "./PercentageBar.vue";
 export default {
-  props:{
-    resort: {type: Resort, required: true}
-  },
-  setup(){
-  return {  }
-  }
+    props: {
+        resort: { type: Resort, required: true }
+    },
+    setup() {
+        return {};
+    },
+    components: { PercentageBar }
 };
 </script>
 
