@@ -10,6 +10,7 @@
     <p class="mb-0">{{ resort.snowComments }}</p>
     <p class="">{{ resort.primarySurfaceCondition }}</p>
   </div>
+  <!-- TODO weather -->
   <div class="col-4">
   </div>
   </section>

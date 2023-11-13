@@ -4,9 +4,11 @@
       <p v-if="account.id">Welcome, {{ account.name }}</p>
       <p v-else>Welcome, user</p>
     </div>
-    <div class="col-4 text-light mt-5 p-5">
-      <FavoriteResortCard :resort="resort"/>
-    </div>
+    <div class="col-4 mt-5 p-5">
+      <router-link class="text-light" :to="{name: 'ResortDetails' }">
+        <FavoriteResortCard :resort="resort"/>
+      </router-link>
+      </div>
   </section>
 </template>
 
