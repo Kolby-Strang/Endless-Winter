@@ -10,5 +10,5 @@ export const AppState = reactive({
   account: {},
   /** @type {import('./models/Resort.js').Resort} */
   pinedResort: {},
-  resorts: [...can, ...usa, ...shs]
+  resorts: [...usa, ...can, ...shs]
 })
