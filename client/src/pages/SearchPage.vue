@@ -4,6 +4,7 @@
       <p class="fs-super-big mt-5 fw-bold">Search Results</p>
     </div>
     <div v-for="r in resorts" :key="r.id" class="col-10 resort-card rounded mb-2">
+      <router-link :to="{name: 'ResortDetails' }">
       <section class="row text-light  ">
         <div class="col-6 text-start">
           <p class="fs-2">
@@ -17,6 +18,7 @@
           <i class="mdi mdi-heart-plus-outline fs-1"></i>
         </div>
       </section>
+    </router-link>
     </div>
   </section>
 </template>
@@ -25,7 +27,7 @@
 <script>
 import { useRoute } from "vue-router";
 import { AppState } from '../AppState';
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 export default {
   setup() {
     const route = useRoute()
@@ -36,7 +38,6 @@ export default {
       body.style.backgroundSize = 'cover'
       body.style.backgroundPosition = 'top'
     }
-    // watch(()=> route.query,)
     onMounted(() => background('../src/assets/img/searchBg.jpg'))
     return {
       editable,
