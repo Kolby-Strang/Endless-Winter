@@ -17,7 +17,8 @@ class ReviewsService {
         return review
     }
     async getReviewsByResortId(snoId) {
-        const reviews = await dbContext.Review.find({ snoId })
+        const reviews = await dbContext.Review.find({ snoId }).populate('account', 'name id picture')
+
         return reviews
     }
     async createReview(reviewData) {
