@@ -47,7 +47,7 @@ export default {
         const reg = new RegExp(route.query.search, 'ig')
 
         return AppState.resorts.filter(r => {
-          return reg.test(r.resortName + ' ' + r.state + ' ' + r.region)
+          return reg.test(r.resortName + ' ' + r.state + ' ' + r.region + ' ' + r.country + ' ' + r.stateName)
         })
       }),
     }
