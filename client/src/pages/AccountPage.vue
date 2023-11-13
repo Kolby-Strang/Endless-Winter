@@ -1,9 +1,15 @@
 <template>
-  <div class="about text-center">
+  <section class="row margin">
+    <div class="about text-center col-12">
     <h1>Welcome {{ account.name }}</h1>
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
+  <div class="col-">
+
+  </div>
+  </section>
+  
 </template>
 
 <script>
@@ -21,5 +27,9 @@ export default {
 <style scoped>
 img {
   max-width: 100px;
+}
+
+.margin{
+  margin-top: 5rem;
 }
 </style>

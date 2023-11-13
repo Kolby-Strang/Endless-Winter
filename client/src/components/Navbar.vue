@@ -6,7 +6,7 @@
       </div>
 
       <div>
-        <input v-model="editable.search" type="text" class="form-control rounded-pill searchBar text-light"
+        <input @keyup.enter="submitSearch()" v-model="editable.search" type="text" class="form-control rounded-pill searchBar text-light"
           id="formGroupExampleInput" placeholder="Search">
 
         <!-- <div class="position-relative" v-if="editable">
