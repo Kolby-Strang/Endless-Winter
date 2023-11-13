@@ -27,7 +27,7 @@ export default {
             body.style.backgroundPosition = 'center';
         }
         async function getResortBogus() {
-            await resortsService.getResortbyId(208001);
+            await resortsService.getResortById(208001);
         }
         onMounted(() => {
             backgroundImage('src/assets/img/hero.jpg');
