@@ -9,3 +9,4 @@ export const ResortSchema = new Schema({
     timestamps: true,
     toJSON: { virtuals: true }
 })
+

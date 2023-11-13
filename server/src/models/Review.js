@@ -12,3 +12,17 @@ export const ReviewSchema = new Schema({
 })
 
 ReviewSchema.index({ accountId: 1, snoId: 1 }, { unique: true })
+
+
+ReviewSchema.virtual('account', {
+    localField: "accountId",
+    foreignField: "_id",
+    ref: "Account",
+    justOne: true
+})
+
+ReviewSchema.virtual('likes', {
+    localField: '_id',
+    foreignField: 'thingId',
+    ref: 'Like'
+})

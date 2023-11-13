@@ -1,10 +1,10 @@
 <template>
   <section class="row">
-    <div class="col-12 p-5 text-light fw-bold fs-super-big text-center">
+    <div class="col-12 p-5 title-font text-center d-none d-md-block">
       <p v-if="account.id">Welcome, {{ account.name }}</p>
       <p v-else>Welcome, user</p>
     </div>
-    <div class="col-4 mt-5 p-5">
+    <div class="col-12 col-md-8 col-lg-6 col-xxl-4 text-light mt-5 p-3 p-md-5">
       <router-link class="text-light" :to="{name: 'ResortDetails' }">
         <FavoriteResortCard :resort="resort"/>
       </router-link>
@@ -66,5 +66,11 @@ export default {
       object-position: center;
     }
   }
+}
+.title-font{
+  color: white;
+  font-weight: bold;
+  font-size: 55pt;
+  text-shadow: -7px 7px 0 rgba(0, 0, 0, 0.31);
 }
 </style>
