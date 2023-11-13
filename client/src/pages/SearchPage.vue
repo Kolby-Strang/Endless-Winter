@@ -4,7 +4,7 @@
       <p class="fs-super-big mt-5 fw-bold">Search Results</p>
     </div>
     <div v-for="r in resorts" :key="r.id" class="col-10 resort-card rounded mb-2">
-      <router-link :to="{name: 'ResortDetails' }">
+      <router-link :to="{name: 'ResortDetails', params: {resortId: r.id} }">
       <section class="row text-light ">
         <div class="col-6 text-start">
           <p class="fs-2">
