@@ -35,12 +35,15 @@ class PostsService {
     const posts = await dbContext.Post.find({ accountId })
     return posts
   }
-  getPostsByResortId(snoId) {
-    const posts = dbContext.Post.find({ snoId }).populate('account', 'name picture id')
+  async getPostsByResortId(snoId) {
+    const posts = await dbContext.Post.find({ snoId }).populate('account', 'name picture id').populate('likes')
+
+    posts.forEach(post => post.likes = post.likes.map(like => like.accountId))
     return posts
   }
   async createPost(postData) {
     const post = await dbContext.Post.create(postData)
+    post.likes = []
     return post
   }
 }

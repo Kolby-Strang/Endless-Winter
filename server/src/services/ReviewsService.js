@@ -24,6 +24,7 @@ class ReviewsService {
     }
     async createReview(reviewData) {
         const review = await dbContext.Review.create(reviewData)
+        review.likes = []
         return review
     }
 }

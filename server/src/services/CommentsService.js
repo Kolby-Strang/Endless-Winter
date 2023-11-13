@@ -9,6 +9,10 @@ class CommentsService {
         }
         comment.body = commentData.body || comment.body
         await comment.save()
+        await comment.populate('account', 'id name picture')
+        await comment.populate('likes')
+        // @ts-ignore
+        comment.likes = comment.likes.map(like => like.accountId)
         return comment
     }
     async getCommentById(commentId) {
@@ -27,11 +31,15 @@ class CommentsService {
         return 'Comment Deleted'
     }
     async getCommentsByThingId(thingId) {
-        const comments = await dbContext.Comment.find({ thingId }).populate('account', 'id name picture')
+        const comments = await dbContext.Comment.find({ thingId }).populate('account', 'id name picture').populate('likes')
+        // @ts-ignore
+        comments.forEach(comment => comment.likes = comment.likes.map(like => like.accountId))
         return comments
     }
     async createComment(commentData) {
         const comment = await dbContext.Comment.create(commentData)
+        // @ts-ignore
+        comment.likes = []
         return comment
     }
 

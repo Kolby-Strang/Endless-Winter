@@ -1,5 +1,5 @@
 <template>
-  <header class="container-fluid sticky-top">
+  <header class="container-fluid fixed-top">
     <Navbar />
   </header>
   <main class="container-fluid">
@@ -29,7 +29,6 @@ export default {
 :root{
   --main-height: calc(100vh - 32px - 64px);
 }
-
 
 footer {
   display: grid;

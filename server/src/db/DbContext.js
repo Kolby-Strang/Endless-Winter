@@ -16,7 +16,6 @@ class DbContext {
   Review = mongoose.model('Review', ReviewSchema)
   Post = mongoose.model('Post', PostSchema)
   Comment = mongoose.model('Comment', CommentSchema)
-
   Like = mongoose.model('Like', LikeSchema)
 }
 
