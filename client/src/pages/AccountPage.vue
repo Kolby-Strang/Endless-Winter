@@ -1,22 +1,43 @@
 <template>
   <section class="row margin">
-    <div class="about text-center col-12">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
-  </div>
-  <div class="col-">
-
-  </div>
+    <div class="col-9 p-5">
+      <section class="row">
+        <div class="about text-center col-12 bg-card rounded">
+          <section class="row">
+            <div class="col-6 p-3">
+              <img class="rounded img-fluid" :src="account.picture" alt="" />
+            </div>
+            <div class="col-6 p-3 text-light">
+              <h1>{{ account.name }}</h1>
+            </div>
+          </section>
+        </div>
+        <div class="col-6">
+          post area
+        </div>
+      </section>
+    </div>
+    <div class="col-3 pt-5">
+      favorite area
+    </div>
   </section>
   
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState';
 export default {
   setup() {
+    function backgroundImage(imgUrl) {
+            const body = document.getElementById('body');
+            body.style.backgroundImage = `url('${imgUrl}')`;
+            body.style.backgroundSize = 'cover';
+            body.style.backgroundPosition = 'center';
+        }
+    onMounted(()=>{
+      backgroundImage('src/assets/img/hero.jpg');
+    })
     return {
       account: computed(() => AppState.account)
     }
@@ -26,10 +47,15 @@ export default {
 
 <style scoped>
 img {
-  max-width: 100px;
+  width: 100%;
 }
 
 .margin{
-  margin-top: 5rem;
+  margin-top: 3rem;
+}
+
+.bg-card{
+  background-color: rgba(41, 38, 87, 0.493);
+  backdrop-filter: blur(4px);
 }
 </style>
