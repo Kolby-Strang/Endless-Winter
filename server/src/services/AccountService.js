@@ -1,4 +1,5 @@
 import { dbContext } from '../db/DbContext'
+import { BadRequest } from '../utils/Errors.js'
 
 // Private Methods
 
@@ -60,7 +61,15 @@ class AccountService {
     })
     account = await createAccountIfNeeded(account, user)
     await mergeSubsIfNeeded(account, user)
-    account.populate('favorites')
+    return account
+  }
+
+  async getAccountById(accountId) {
+    const account = await dbContext.Account.findById(accountId)
+    if (!account) {
+      throw new BadRequest(`There are no accounts with Id: ${accountId}`)
+    }
+    await account.populate('favorites')
     return account
   }
 
