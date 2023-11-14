@@ -11,6 +11,7 @@ class ResortsService {
     resort.resortImg = res2.data.resortImg
     resort.trailImg = res2.data.trailImg
     AppState.pinedResort = resort
+    return resort
   }
 }
 
