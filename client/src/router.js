@@ -30,25 +30,30 @@ const routes = [
     component: loadPage('SearchPage'),
   },
   {
+    path: '/post/:postId',
+    name: 'Post',
+    component: loadPage('PostDetailsPage')
+  },
+  {
     path: '/resort/:resortId',
     name: 'Resort',
     component: loadPage('ResortPage'),
     children: [
       {
-      path: 'events',
-      name: 'Events',
-      component: EventsChildRoute
-    },
-    {
-      path: 'reviews',
-      name: 'Reviews',
-      component: ReviewsChildRoute
-    },
-    {
-      path: 'chat',
-      name: 'Chat',
-      component: MountainChatChildRoute
-    }]
+        path: 'events',
+        name: 'Events',
+        component: EventsChildRoute
+      },
+      {
+        path: 'reviews',
+        name: 'Reviews',
+        component: ReviewsChildRoute
+      },
+      {
+        path: 'chat',
+        name: 'Chat',
+        component: MountainChatChildRoute
+      }]
   },
   {
     path: '/resortDetails/:resortId',

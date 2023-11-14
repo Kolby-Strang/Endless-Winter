@@ -34,5 +34,8 @@ export default {
 <style lang="scss" scoped>
 .filter-background {
   background-color: #ffffff75;
+  backdrop-filter: blur(4px);
 }
+
+
 </style>

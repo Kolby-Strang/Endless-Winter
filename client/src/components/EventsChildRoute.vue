@@ -1,5 +1,5 @@
 <template>
-<section class="row filter-background rounded text-center ">
+<section class="row filter-background rounded text-center background-blur">
   <div class="col-4 py-1">
     <router-link :to="{name:'Reviews'}">
       <p class="fs-1 mb-0 text-dark">reviews</p>
@@ -34,5 +34,7 @@ export default {
 <style lang="scss" scoped>
 .filter-background {
   background-color: #ffffff75;
+  backdrop-filter: blur(4px);
 }
+
 </style>
