@@ -37,8 +37,8 @@
     </div>
     <!-- !SECTION -->
     <div class="col-11 mt-5">
-      <section class="row filter-background rounded text-center py-3">
-        <div class="col-4">
+      
+        <!-- <div class="col-4">
           <p class="fs-1 mb-0">reviews</p>
         </div>
         <div class="col-4">
@@ -46,8 +46,10 @@
         </div>
         <div class="col-4">
           <p class="fs-1 mb-0">mountain chat</p>
-        </div>
-      </section>
+        </div> -->
+        
+        <router-view>
+          </router-view>
     </div>
   </section>
 </template>
@@ -60,8 +62,10 @@ import Pop from "../utils/Pop";
 import { resortsService } from "../services/ResortsService";
 import { useRoute } from "vue-router";
 import PercentageBar from "../components/PercentageBar.vue";
+import { logger } from "../utils/Logger";
 export default {
     setup() {
+        
         const route = useRoute();
         onMounted(() => {
             getResort();
@@ -69,6 +73,7 @@ export default {
         async function getResort() {
             const resortId = route.params.resortId;
             await resortsService.getResortbyId(resortId);
+            logger.log(route.fullPath)
         }
         return {
             resort: computed(() => AppState.pinedResort)
@@ -93,9 +98,7 @@ export default {
   backdrop-filter: blur(4px);
 }
 
-.filter-background {
-  background-color: #ffffff75;
-}
+
 
 .margin {
   margin-top: 5rem;
