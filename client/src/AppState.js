@@ -14,6 +14,10 @@ export const AppState = reactive({
   pinedResort: {},
   /** @type {Resort} */
   activeResort: {},
+  /** @type {import('./models/Post.js').Post[]} */
+  resortPosts: [],
+  resortReviews: [],
   resorts: [...usa, ...can, ...shs],
   comments: [],
+  activePost: {},
 })
