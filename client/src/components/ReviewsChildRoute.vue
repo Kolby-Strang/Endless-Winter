@@ -32,7 +32,7 @@
             <div class="col-12 ">
               <section class="row justify-content-center">
                 <div class="col-10">
-                  <p class="mx-5">{{ review.body }}</p>
+                  <p class="mx-5 fs-5">{{ review.body }}</p>
 
                 </div>
 
