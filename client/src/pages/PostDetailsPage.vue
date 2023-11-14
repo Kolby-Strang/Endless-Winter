@@ -1,9 +1,24 @@
 <template>
-    <section class="row">
-        <div class="col-8">
-            {{ post }}
+    <section class="row p-5 mt-5">
+        <div v-if="post.account" class="col-8 bg-blur p-3 post">
+            <div>
+                <img class="profile-picture rounded-circle" :src="post.account.picture" alt="">
+                {{ post.account.name }}
+            </div>
+            <div>
+                <img class="post-picture mt-3" :src="post.imgUrl" alt="Post Picture">
+            </div>
+            <div>
+                <h3>
+                    {{ post.title }}
+                </h3>
+                <p>
+                    {{ post.body }}
+
+                </p>
+            </div>
         </div>
-        <div class="col-4">
+        <div class="col-4 comments">
             <div v-for="comment in comments" :key="comment" class="bg-blur rounded">
                 <div class="d-flex align-items-center">
                     <img class="rounded-circle p-3 profile-picture" :src="comment.account.picture" alt="Profile Picture">
@@ -38,8 +53,8 @@ export default {
 
         const route = useRoute();
         onMounted(() => {
-            getCommentsByPostsId()
             backgroundImage('src/assets/img/hero.jpg')
+            getCommentsByPostsId()
             getPostByPostId()
 
         })
@@ -53,6 +68,7 @@ export default {
             }
         }
         async function getPostByPostId() {
+
             const postId = route.params.postId
             await postsService.getPostByPostId(postId)
         }
@@ -71,5 +87,23 @@ export default {
     height: 10vh;
     object-fit: cover;
     object-position: center;
+}
+
+.post-picture {
+    height: 50vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+.post {
+
+    height: min-content;
+}
+
+.comments {
+    height: 80vh;
+    overflow-y: scroll;
 }
 </style>

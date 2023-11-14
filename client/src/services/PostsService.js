@@ -14,9 +14,10 @@ class PostsService {
         AppState.comments = commentData
     }
 
-    async getPostsByPostsId(postId) {
+    async getPostByPostId(postId) {
         const res = await api.get(`api/posts/${postId}`)
-        const postData = res.data.map(post => new Post(post))
+        logger.log(res.data)
+        const postData = new Post(res.data)
         AppState.activePost = postData
 
     }
