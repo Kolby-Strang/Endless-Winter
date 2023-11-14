@@ -14,6 +14,8 @@ export const AppState = reactive({
   pinedResort: {},
   /** @type {Resort} */
   activeResort: {},
+  resortPosts: [],
   resorts: [...usa, ...can, ...shs],
   comments: [],
+  activePost: {},
 })
