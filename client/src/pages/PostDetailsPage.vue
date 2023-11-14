@@ -1,10 +1,17 @@
 <template>
     <section class="row">
         <div class="col-8">
+            {{ post }}
         </div>
         <div class="col-4">
-            <div v-for="comment in comments" :key="comment" class="bg-blur">
-                <p>
+            <div v-for="comment in comments" :key="comment" class="bg-blur rounded">
+                <div class="d-flex align-items-center">
+                    <img class="rounded-circle p-3 profile-picture" :src="comment.account.picture" alt="Profile Picture">
+                    <p class="ms-2">
+                        {{ comment.account.name }}
+                    </p>
+                </div>
+                <p class="ms-2 p-3 text-center">
                     {{ comment.body }}
                 </p>
             </div>
@@ -33,6 +40,7 @@ export default {
         onMounted(() => {
             getCommentsByPostsId()
             backgroundImage('src/assets/img/hero.jpg')
+            getPostByPostId()
 
         })
         async function getCommentsByPostsId() {
@@ -44,13 +52,24 @@ export default {
                 Pop.error(error)
             }
         }
+        async function getPostByPostId() {
+            const postId = route.params.postId
+            await postsService.getPostByPostId(postId)
+        }
 
         return {
-            comments: computed(() => AppState.comments)
+            comments: computed(() => AppState.comments),
+            post: computed(() => AppState.activePost)
         }
     }
 };
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.profile-picture {
+    height: 10vh;
+    object-fit: cover;
+    object-position: center;
+}
+</style>
