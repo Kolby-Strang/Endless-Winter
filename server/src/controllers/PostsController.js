@@ -10,10 +10,21 @@ export class PostsController extends BaseController {
     this.router
       .get('/:postId/comments', this.getCommentsByPostId)
       .get('/:postId/likes', this.getLikesByPostId)
+      .get('/:postId', this.getPostById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createPost)
       .put('/:postId', this.editPost)
       .delete('/:postId', this.destroyPost)
+  }
+  async getPostById(req, res, next) {
+    try {
+      const postId = req.params.postId
+      const post = await postsService.getPostById(postId)
+      return res.send(post)
+
+    } catch (error) {
+      next(error)
+    }
   }
   async getCommentsByPostId(req, res, next) {
     try {
