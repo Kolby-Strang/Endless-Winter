@@ -3,7 +3,7 @@
     <!-- SECTION resort details card -->
     <div class="col-10 background-blur rounded">
       <section class="row p-1 ">
-        <div class="col-6 text-light">
+        <div class="col-11 text-light">
           <p class="fs-1 mb-0 d-inline">
             {{ resort.resortName }}
           </p> 
@@ -14,7 +14,7 @@
           {{ `${resort.state}, ${resort.country}` }}
           </p>
         </div>
-        <div class="col-6 text-end ">
+        <div class="col-1 text-end ">
           <div class="">
             <i class="fs-2 mdi mdi-star"></i>
           </div>
@@ -72,11 +72,11 @@ export default {
         });
         async function getResort() {
             const resortId = route.params.resortId;
-            await resortsService.getResortbyId(resortId);
+            await resortsService.getResortById(resortId);
             logger.log(route.fullPath)
         }
         return {
-            resort: computed(() => AppState.pinedResort)
+            resort: computed(() => AppState.activeResort)
         };
     },
     components: { PercentageBar }
