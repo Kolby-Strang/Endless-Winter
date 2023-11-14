@@ -1,6 +1,6 @@
 <template>
   <section class="row filter-background rounded text-center ">
-  <div class="col-4 py-1 rounded-start border-bottom border-primary border-2">
+  <div class="col-4 py-1 rounded-start border-bottom border-primary border-5">
     <p class="fs-1 mb-0 ">reviews</p>
         </div>
         <div class="col-4 py-1 ">

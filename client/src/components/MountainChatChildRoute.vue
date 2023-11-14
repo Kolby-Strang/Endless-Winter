@@ -10,7 +10,7 @@
             <p class="fs-1 mb-0 text-dark">events</p>
           </router-link>
         </div>
-        <div class="col-4 py-1  rounded-end border-bottom border-primary border-2">
+        <div class="col-4 py-1  rounded-end border-bottom border-primary border-5">
           <p class="fs-1 mb-0">mountain chat</p>
         </div>
       </section>

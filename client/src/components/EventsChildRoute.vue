@@ -5,7 +5,7 @@
       <p class="fs-1 mb-0 text-dark">reviews</p>
     </router-link>
         </div>
-        <div class="col-4 py-1 border-bottom border-primary border-2">
+        <div class="col-4 py-1 border-bottom border-primary border-5">
           <p class="fs-1 mb-0 ">events</p>
         </div>
         <div class="col-4 py-1">
