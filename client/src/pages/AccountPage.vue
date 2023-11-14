@@ -19,8 +19,8 @@
     </div>
     <div class="col-3 pt-5">
       <section class="row">
-        <div v-for="favorite in account.favorites" :key="favorite.id" class="col-12">
-          hi
+        <div v-for="resort in resorts" :key="resort.id" class="col-12">
+          <FavoriteResortCard :resort="resort" />
         </div>
       </section>
     </div>
@@ -29,23 +29,42 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watch, watchEffect } from 'vue';
 import { AppState } from '../AppState';
+import { useRoute } from "vue-router";
+import { accountService } from "../services/AccountService.js";
+import FavoriteResortCard from "../components/FavoriteResortCard.vue";
+import { resortsService } from "../services/ResortsService.js";
 export default {
-  setup() {
-    function backgroundImage(imgUrl) {
+    setup() {
+        const route = useRoute();
+        function backgroundImage(imgUrl) {
             const body = document.getElementById('body');
             body.style.backgroundImage = `url('${imgUrl}')`;
             body.style.backgroundSize = 'cover';
             body.style.backgroundPosition = 'center';
         }
-    onMounted(()=>{
-      backgroundImage('src/assets/img/hero.jpg');
-    })
-    return {
-      account: computed(() => AppState.account)
-    }
-  }
+        async function getProfile() {
+            await accountService.getProfile(route.params.accountId);
+        }
+        async function getFavoriteResorts(){
+          await resortsService.getFavoriteResorts(AppState.activeProfile.favorites)
+        }
+        watchEffect(()=>{
+          if(AppState.account.id){
+            getFavoriteResorts()
+          }
+        })
+        onMounted(() => {
+            backgroundImage('src/assets/img/hero.jpg');
+            getProfile();
+        });
+        return {
+            account: computed(() => AppState.activeProfile),
+            resorts: computed(() => AppState.activeFavoritesResorts)
+        };
+    },
+    components: { FavoriteResortCard }
 }
 </script>
 

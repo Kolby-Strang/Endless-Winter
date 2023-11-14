@@ -16,6 +16,7 @@ export const AppState = reactive({
   activeResort: {},
   /** @type {import('./models/Post.js').Post[]} */
   resortPosts: [],
+  activeFavoritesResorts: [],
   resortReviews: [],
   resorts: [...usa, ...can, ...shs],
   comments: [],

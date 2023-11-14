@@ -35,7 +35,7 @@ export default {
         });
         return {
             account: computed(() => AppState.account),
-            resort: computed(() => AppState.pinedResort),
+            resort: computed(() => AppState.activeResort),
         };
     },
     components: { FavoriteResortCard }
