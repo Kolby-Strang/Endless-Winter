@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js"
 import { Resort } from "../models/Resort.js"
 import { api, resortsApi } from "./AxiosService.js"
+import { logger } from "../utils/Logger.js"
 
 class ResortsService {
   async getResortById(resortId) {
@@ -13,6 +14,13 @@ class ResortsService {
     AppState.activeResort = resort
     return resort
   }
+
+  async getPostsByResortId(resortId) {
+    const res = await api.get(`api/resorts/${resortId}/posts`)
+    logger.log(res)
+  }
+
+
 }
 
 export const resortsService = new ResortsService()
