@@ -6,13 +6,26 @@
         <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body container-fluid">
+        <form class="row">
+          <div class=" col-6 form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label class="ms-2" for="floatingInput">Post Title</label>
+          </div>
+          <div class=" col-6 form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label class="ms-2" for="floatingPassword">Password</label>
+          </div>
+          <div class=" col-12 form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+            <label class="ms-2" for="floatingTextarea2">Comments</label>
+          </div>
+          <div class="col-12 text-end mt-2">
+            <button type="submit" class="btn btn-outline-dark rounded">Create Post</button>
+          </div>
+        </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      
     </div>
   </div>
 </div>
