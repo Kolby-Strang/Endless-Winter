@@ -4,26 +4,28 @@
     <div class="col-10 background-blur rounded">
       <section class="row p-1 ">
         <div class="col-11 text-light">
-          <p class="fs-1 mb-0 d-inline">
-            {{ resort.resortName }}
-          </p> 
+            <router-link title="Resort Details" class="text-light" :to="{name: 'ResortDetails', params: {resortId: route.params.resortId}}">
+            <p class="fs-1 mb-0 d-inline">
+              {{ resort.resortName }}
+            </p> 
           <p class=" ms-2 d-inline">
             {{ resort.operatingStatus }}
           </p>
           <p class="mb-0 fs-3">
-          {{ `${resort.state}, ${resort.country}` }}
+            {{ `${resort.state}, ${resort.country}` }}
           </p>
+        </router-link>
+      </div>
+      <div class="col-1 text-end ">
+        <div class="">
+          <i class="fs-2 mdi mdi-star"></i>
         </div>
-        <div class="col-1 text-end ">
-          <div class="">
-            <i class="fs-2 mdi mdi-star"></i>
-          </div>
-        </div>
+      </div>
         <div v-if="resort.resortImg" class="col-12">
           <img class="resort-img img-fluid rounded" :src="resort.resortImg" alt="">
         </div>
         <div class="col-3">
-    <PercentageBar :resort="resort" :trailsBar="true" />
+          <PercentageBar :resort="resort" :trailsBar="true" />
         </div>
         <div class="col-6 text-start">
           <div>
@@ -31,7 +33,7 @@
           </div>
         </div>
         <div class="col-3">
-    
+          
         </div>
       </section>
     </div>
@@ -68,6 +70,7 @@ export default {
           }
         }
         return {
+          route,
             resort: computed(() => AppState.activeResort)
         };
     },

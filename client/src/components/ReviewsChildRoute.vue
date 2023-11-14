@@ -14,9 +14,34 @@
           </router-link>
         </div>
       </section>
-        <div class="col-12">
-          <h1>REVIEWS</h1>
+      <section v-for="review in reviews" :key="review.id" class="row justify-content-center mt-5">
+        <div  class="col-10 background-blur rounded  ">
+          <section class="row text-light p-2 mt-1 ">
+            <div class="col-1">
+              <img class="rounded-circle img-pfp" :src="review.account.picture" alt="">
+            </div>
+            <div class="col-8 fs-3">
+              <p>{{ review.title }}</p>
+            </div>
+            <div class="col-3 text-center">
+              <div v-for="starCount in review.starCount" :key="starCount.id" class="d-inline fs-2 star-color">
+                <i  class="mdi mdi-star "></i>
+                
+              </div>
+            </div>
+            <div class="col-12 ">
+              <section class="row justify-content-center">
+                <div class="col-10">
+                  <p class="mx-5 fs-5">{{ review.body }}</p>
+
+                </div>
+
+              </section>
+            </div>
+          </section>
         </div>
+
+      </section>
 </template>
 
 
@@ -26,6 +51,7 @@ import { computed, reactive, onMounted } from 'vue';
 import { useRoute } from "vue-router";
 import Pop from "../utils/Pop";
 import { resortsService } from "../services/ResortsService";
+import { logger } from "../utils/Logger";
 export default {
   setup(){
     const route = useRoute()
@@ -40,7 +66,12 @@ export default {
         Pop.error(error)
       }
     }
-  return {  }
+  return { 
+    reviews: computed(() => AppState.resortReviews),
+    computeStars(starCount) {
+      logger.log(starCount)
+    }
+   }
   }
 };
 </script>
@@ -52,4 +83,15 @@ export default {
   backdrop-filter: blur(4px);
 }
 
+.img-pfp {
+  height: 7vh;
+}
+
+.star-color {
+  color: #BDCFF3;
+}
+.background-blur {
+  background-color: rgba(41, 38, 87, 0.493);
+  backdrop-filter: blur(4px);
+}
 </style>
