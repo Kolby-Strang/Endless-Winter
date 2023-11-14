@@ -2,6 +2,13 @@ import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden, UnAuthorized } from "../utils/Errors.js"
 
 class PostsService {
+  async getPostById(postId) {
+    const post = await dbContext.Post.findById(postId)
+    if (!post) {
+      throw new BadRequest(`Post with Id: ${postId} does not exist`)
+    }
+    return post.populate('account')
+  }
   async destroyPost(postId, userId) {
     const post = await dbContext.Post.findById(postId)
     if (!post) {
