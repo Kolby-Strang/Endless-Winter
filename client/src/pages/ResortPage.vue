@@ -20,7 +20,7 @@
           </div>
         </div>
         <div v-if="resort.resortImg" class="col-12">
-         <img class="resort-img img-fluid rounded" :src="resort.resortImg" alt="">
+          <img class="resort-img img-fluid rounded" :src="resort.resortImg" alt="">
         </div>
         <div class="col-3">
     <PercentageBar :resort="resort" :trailsBar="true" />
@@ -37,19 +37,7 @@
     </div>
     <!-- !SECTION -->
     <div class="col-11 mt-5">
-      
-        <!-- <div class="col-4">
-          <p class="fs-1 mb-0">reviews</p>
-        </div>
-        <div class="col-4">
-          <p class="fs-1 mb-0">events</p>
-        </div>
-        <div class="col-4">
-          <p class="fs-1 mb-0">mountain chat</p>
-        </div> -->
-        
-        <router-view>
-          </router-view>
+      <router-view></router-view>
     </div>
   </section>
 </template>
@@ -71,9 +59,13 @@ export default {
             getResort();
         });
         async function getResort() {
+          try {
             const resortId = route.params.resortId;
             await resortsService.getResortById(resortId);
-            logger.log(route.fullPath)
+            
+          } catch (error) {
+            Pop.error(error)
+          }
         }
         return {
             resort: computed(() => AppState.activeResort)
