@@ -45,4 +45,6 @@ form:invalid button[type="submit"] {
 .bg-blur {
   background-color: rgba(41, 38, 87, 0.493);
   backdrop-filter: blur(4px);
+  border-radius: 10px;
+  color: white;
 }
