@@ -8,10 +8,12 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
+  /** @type {import('./models/Account.js').Account} */
+  activeProfile: {},
   /** @type {import('./models/Resort.js').Resort} */
   pinedResort: {},
   /** @type {Resort} */
-  activeResort:{},
+  activeResort: {},
   resorts: [...usa, ...can, ...shs],
   comments: [],
 })

@@ -12,13 +12,17 @@
             </div>
           </section>
         </div>
-        <div class="col-6">
-          post area
+        <div class="col-6 text-light">
+          flksjd;l
         </div>
       </section>
     </div>
     <div class="col-3 pt-5">
-      favorite area
+      <section class="row">
+        <div v-for="favorite in account.favorites" :key="favorite.id" class="col-12">
+          hi
+        </div>
+      </section>
     </div>
   </section>
   
