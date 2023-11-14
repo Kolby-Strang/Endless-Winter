@@ -25,7 +25,7 @@ import { Resort } from "../models/Resort.js";
 import PercentageBar from "./PercentageBar.vue";
 export default {
     props: {
-        resort: { type: Resort, required: true }
+        resort: { type: Object, required: true }
     },
     setup() {
         return {};
