@@ -39,12 +39,14 @@
       </div>
     </div>
   </nav>
+  
 </template>
 
 <script>
 import Login from './Login.vue';
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import PostModal from "./PostModal.vue";
 export default {
   setup() {
     const router = useRouter()
@@ -67,7 +69,7 @@ export default {
 
     }
   },
-  components: { Login }
+  components: { Login, PostModal }
 }
 </script>
 

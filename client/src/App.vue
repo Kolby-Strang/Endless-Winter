@@ -7,6 +7,7 @@
   </main>
   <!-- <footer class="bg-dark text-light">
   </footer> -->
+  <PostModal />
 </template>
 
 <script>
