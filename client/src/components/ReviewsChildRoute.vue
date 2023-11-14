@@ -23,8 +23,23 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
+import { useRoute } from "vue-router";
+import Pop from "../utils/Pop";
+import { resortsService } from "../services/ResortsService";
 export default {
   setup(){
+    const route = useRoute()
+    onMounted(() => {
+      getReviewsByResortId()
+    })
+    async function getReviewsByResortId() {
+      try {
+        const resortId = route.params.resortId
+        await resortsService.getReviewsByResortId(resortId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
   return {  }
   }
 };
