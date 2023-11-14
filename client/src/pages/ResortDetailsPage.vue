@@ -1,10 +1,10 @@
 <template>
     <div class="row page-padding">
-        <div class="col-12 col-md-7">
+        <div class="col-12 col-lg-7 pb-3 pb-lg-0">
             <div class="row gy-3">
                 <div class="col-12">
                     <div class="row bg-blur">
-                        <div class="col-7">
+                        <div class="col-9">
                             <h1 class="fw-normal mb-0">{{resort.resortName}}</h1>
 
                             <p 
@@ -18,7 +18,7 @@
 
                             <p class="fs-3 fw-light m-0">{{resort.resortType?.split('_').join(' ')}}</p>
                         </div>
-                        <div class="col-5 d-flex justify-content-end align-items-center">
+                        <div class="col-3 d-flex justify-content-end align-items-center">
                             <i v-if="resort.resortStatus == 1" class="mdi mdi-check-bold open-icon"></i>
                             <i v-else-if="resort.resortStatus == 2 || resort.resortStatus == 5 || resort.resortStatus == 6" :title="resort.operatingStatus" class="mdi mdi-clock-outline time-icon"></i>
                             <i v-else-if="resort.resortStatus == 7" class="mdi mdi-plus-thick closed-icon"></i>
@@ -28,8 +28,8 @@
                     </div>
                 </div>
 
-                <div class="col-4 ps-0">
-                    <div class="bg-blur h-100">
+                <div v-if="resort.trailImg" class="col-4 ps-0">
+                    <div class="bg-blur h-100 p-2">
                         <div class="position-relative h-100 w-100">
 
                             <img class="trail-image" :src="resort.trailImg" alt="Trail Map">
@@ -41,12 +41,14 @@
                     </div>
                 </div>
 
-                <div class="col-8 pe-0">
+                <div :class="{'col-12': !resort.trailImg, 'col-8': resort.trailImg, 'pe-0': true}">
                     <div class="row gy-3">
-                        <div class="col-6">
-                            <div class="bg-blur h-100">Trail Percent Bars</div>
+                        <div class="col-6 ps-0">
+                            <div class="bg-blur h-100">
+                                <PercentageBar :resort="resort" :trailsBar="true" />
+                            </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 ps-0">
                             <div class="bg-blur h-100" :title="[resort.nightSkiing ? 'Night Skiing Available': 'Day Skiing Only']">
                                 <p class="m-0 d-flex justify-content-around">
                                     <i class="mdi mdi-white-balance-sunny text-warning fs-1"></i>
@@ -55,16 +57,33 @@
                                 <p class="m-0 text-center"><i class="mdi mdi-snowboard fs-1 text-primary"></i></p>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="bg-blur">Snow Conditions</div>
+                        <div class="col-12 ps-0">
+                            <div class="bg-blur pe-0">
+
+                                <div class="d-flex">
+                                    <div class="snowflake">
+                                        <i class="mdi mdi-snowflake"></i>
+                                    </div>
+                                    <div>
+                                        <div v-if="resort.snowComments || resort.primarySurfaceCondition" class="fw-bold fs-3 d-flex flex-column justify-content-around h-100">
+                                            <p class="mb-0">{{ resort.snowComments }}</p>
+                                            <p class="mb-0">{{ resort.primarySurfaceCondition }}</p>
+                                        </div>
+                                        <div v-else class="fw-bold fs-4 text-secondary d-flex flex-column justify-content-around h-100">
+                                            <p class="mb-0">No Snow Data</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-5 p-0 px-md-3">
+        <div class="col-12 col-lg-5 p-0 ps-lg-3">
             <div class="bg-blur h-100">
-                {{ resort }}
+                weather
             </div>
         </div>
     </div>
@@ -139,7 +158,7 @@ export default {
 
 .open-icon{
     font-size: 65pt;
-    color: green;
+    color: rgb(0, 233, 0);
 }
 .closed-icon{
     font-size: 65pt;
@@ -148,7 +167,7 @@ export default {
 }
 .summer-icon{
     font-size: 65pt;
-    color: yellow;
+    color: rgb(247, 214, 0);
 }
 .time-icon{
     font-size: 65pt;
@@ -175,5 +194,17 @@ export default {
     color: rgb(255, 255, 255);
     text-shadow: 0 0 20px black;
 }
+.snowflake{
+    font-size: 70pt;
+    padding-right: 1rem;
+}
+// .snowflake::after{
+//     font-size: 0;
+//     position: absolute;
+//     content: '.';
+//     background-color: rgb(76, 76, 76);
+//     height: 82%;
+//     width: 3px;
+// }
 
 </style>
