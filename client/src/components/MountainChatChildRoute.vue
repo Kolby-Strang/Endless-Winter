@@ -15,28 +15,30 @@
         </div>
       </section>
         <div class="col-12">
-          <section  class="row justify-content-center">
-            <div class="col-5" v-for="post in posts" :key="post.id">
-              
+          <section  class="row justify-content-center ">
+            <div class="col-5 mb-4 linear-bg" v-for="post in posts" :key="post.id"  >
+              <div v-if="post.imgUrl != undefined" style="{background-image: `url('${post.imgUrl}')`;}" >
+                i
+              </div>
+
             </div>
-              
-            </section>
-            </div>
+          </section>
+        </div>
           
 </template>
 
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import Pop from "../utils/Pop";
 import { useRoute } from "vue-router";
 import { resortsService } from "../services/ResortsService";
-import { logger } from "../utils/Logger";
 export default {
   setup(){
     const route = useRoute()
     onMounted(() => {
+      
       getPostsByResortId()
     })
     async function getPostsByResortId() {
@@ -49,7 +51,7 @@ export default {
     }
   return { 
     posts: computed(() => AppState.resortPosts)
-   }
+    }
   }
 };
 </script>
@@ -61,5 +63,10 @@ export default {
   backdrop-filter: blur(4px);
 }
 
+.linear-bg {
+  height: 10dvh;
+  background: rgb(0,0,0);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 53%, rgba(0,0,0,0.65) 89%, rgba(0,0,0,1) 99%);
+}
 
 </style>

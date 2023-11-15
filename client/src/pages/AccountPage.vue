@@ -1,14 +1,21 @@
 <template>
-  <section class="row margin">
-    <div class="col-9 p-5">
+  <section class="row">
+    <div class="col-9 p-5 margin">
       <section class="row">
-        <div class="about text-center col-12 bg-card rounded">
+        <div class="about col-12 bg-blur rounded">
           <section class="row">
             <div class="col-6 p-3">
               <img class="rounded img-fluid" :src="account.picture" alt="" />
             </div>
-            <div class="col-6 p-3 text-light">
-              <h1>{{ account.name }}</h1>
+            <div class="col-6 p-3 d-flex flex-column justify-content-between">
+              <div>
+                <h1 class="text-center">{{ account.name }}</h1>
+                <p>{{ account.bio }}</p>
+              </div>
+              <div>
+                <i v-if="account.skier" class="mdi mdi-ski fs-icon color-0"></i>
+                <i v-if="account.snowBoarder" class="mdi mdi-snowboard fs-icon color-1"></i>
+              </div>
             </div>
           </section>
         </div>
@@ -17,10 +24,12 @@
         </div>
       </section>
     </div>
-    <div class="col-3 pt-5">
+    <div class="col-3 pt-5 scrollable">
       <section class="row">
         <div v-for="resort in resorts" :key="resort.id" class="col-12">
-          <FavoriteResortCard :resort="resort" />
+          <router-link v-if="resort.id" class="text-light" :to="{name: 'Reviews', params: {resortId: resort.id} }">
+            <FavoriteResortCard :resort="resort"/>
+          </router-link>
         </div>
       </section>
     </div>
@@ -35,6 +44,7 @@ import { useRoute } from "vue-router";
 import { accountService } from "../services/AccountService.js";
 import FavoriteResortCard from "../components/FavoriteResortCard.vue";
 import { resortsService } from "../services/ResortsService.js";
+import { logger } from "../utils/Logger.js";
 export default {
     setup() {
         const route = useRoute();
@@ -47,17 +57,11 @@ export default {
         async function getProfile() {
             await accountService.getProfile(route.params.accountId);
         }
-        async function getFavoriteResorts(){
-          await resortsService.getFavoriteResorts(AppState.activeProfile.favorites)
-        }
-        watchEffect(()=>{
-          if(AppState.account.id){
-            getFavoriteResorts()
-          }
-        })
         onMounted(() => {
-            backgroundImage('src/assets/img/hero.jpg');
-            getProfile();
+          AppState.activeFavoritesResorts = []
+          AppState.activeProfile = {}
+          backgroundImage('src/assets/img/Blaze.png');
+          getProfile();
         });
         return {
             account: computed(() => AppState.activeProfile),
@@ -77,8 +81,24 @@ img {
   margin-top: 3rem;
 }
 
-.bg-card{
-  background-color: rgba(41, 38, 87, 0.493);
-  backdrop-filter: blur(4px);
+.fs-icon{
+  font-size: 4rem;
+}
+
+.scrollable{
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scrollable::-webkit-scrollbar{
+  display: none;
+}
+
+.color-0{
+  color: #BDCFF3;
+}
+.color-1{
+  color: #7099EB;
 }
 </style>
