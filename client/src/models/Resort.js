@@ -20,6 +20,8 @@ export class Resort {
     this.resortImg = data.resortImg
     this.trailImg = data.trailImg
     this.address = data.address
+    this.lat = data.lat
+    this.lon = data.lon
   }
 
   get liftsPercentage() {
