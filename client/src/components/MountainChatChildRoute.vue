@@ -15,12 +15,19 @@
         </div>
       </section>
         <div class="col-12">
-          <section  class="row justify-content-center ">
-            <div class="col-5 mb-4 linear-bg" v-for="post in posts" :key="post.id"  >
-              <div v-if="post.imgUrl != undefined" style="{background-image: `url('${post.imgUrl}')`;}" >
-                i
+          <section  class="row justify-content-around mt-3">
+            <div class="col-5 mb-4 rounded " v-for="post in posts" :key="post.id"  :style="{backgroundImage: `url('${post.imgUrl}')`, backgroundPosition: 'center', backgroundSize: 'cover'}" >
+             <section class="row  linear-bg px-2">
+              <div class="col-12 text-light mt-3">
+                <p v-if="post.imgUrl == undefined" class="mb-0 fs-5">{{ post.body }}</p>
               </div>
-
+              <div class="col-1 align-self-end">
+                
+              </div>
+              <div class="col-11 text-light align-self-end">
+                <p class="fs-4">{{ post.title }}</p>
+              </div>
+             </section>
             </div>
           </section>
         </div>
@@ -65,8 +72,9 @@ export default {
 
 .linear-bg {
   height: 10dvh;
+  background-color: #fff;
   background: rgb(0,0,0);
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 53%, rgba(0,0,0,0.65) 89%, rgba(0,0,0,1) 99%);
+  background: linear-gradient(to bottom,rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 89%, rgba(0,0,0,1) 99%);
 }
 
 </style>
