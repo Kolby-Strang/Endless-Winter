@@ -44,7 +44,8 @@ function sanitizeBody(body) {
     picture: body.picture,
     skier: body.skier,
     snowBoarder: body.snowBoarder,
-    pinnedFavorite: body.pinnedFavorite
+    pinnedFavorite: body.pinnedFavorite,
+    bio: body.bio
   }
   return writable
 }
