@@ -12,6 +12,8 @@ class ResortsService {
     resort.address = res2.data.address
     resort.resortImg = res2.data.resortImg
     resort.trailImg = res2.data.trailImg
+    resort.lat = res2.data.lat
+    resort.lon = res2.data.lon
     AppState.activeResort = resort
     return resort
   }
