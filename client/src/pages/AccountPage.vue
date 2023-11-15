@@ -13,8 +13,8 @@
                 <p>{{ account.bio }}</p>
               </div>
               <div>
-                <i v-if="account.skier" class="mdi mdi-ski fs-icon"></i>
-                <i v-if="account.snowBoarder" class="mdi mdi-snowboard fs-icon"></i>
+                <i v-if="account.skier" class="mdi mdi-ski fs-icon color-0"></i>
+                <i v-if="account.snowBoarder" class="mdi mdi-snowboard fs-icon color-1"></i>
               </div>
             </div>
           </section>
@@ -60,7 +60,7 @@ export default {
         onMounted(() => {
           AppState.activeFavoritesResorts = []
           AppState.activeProfile = {}
-          backgroundImage('src/assets/img/hero.jpg');
+          backgroundImage('src/assets/img/Blaze.png');
           getProfile();
         });
         return {
@@ -93,5 +93,12 @@ img {
 
 .scrollable::-webkit-scrollbar{
   display: none;
+}
+
+.color-0{
+  color: #BDCFF3;
+}
+.color-1{
+  color: #7099EB;
 }
 </style>

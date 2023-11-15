@@ -1,7 +1,7 @@
 <template>
   <div class="component bg-blur">
     <section class=" row mt-5 rounded">
-        <div class="col-8">
+        <div :class="resort.isWeather ? 'col-8':'col-12'">
       <div class=" p-2 ">
       <h3 class="mb-0">{{ resort.resortName }}</h3>
       <p class="mb-0">{{ resort.operatingStatus }}</p>
