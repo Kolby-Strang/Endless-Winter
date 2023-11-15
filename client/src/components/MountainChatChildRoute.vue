@@ -21,8 +21,8 @@
               <div class="col-12 text-light mt-3">
                 <p v-if="post.imgUrl == undefined" class="mb-0 fs-5">{{ post.body }}</p>
               </div>
-              <div class="col-1 align-self-end">
-                
+              <div class="col-1 align-self-end mb-2">
+                <img class="pfp-img rounded-circle" :src="post.account.picture" :alt="post.account.name">
               </div>
               <div class="col-11 text-light align-self-end">
                 <p class="fs-4">{{ post.title }}</p>
@@ -68,6 +68,10 @@ export default {
 .filter-background {
   background-color: #ffffff75;
   backdrop-filter: blur(4px);
+}
+
+.pfp-img {
+  height: 3rem;
 }
 
 .linear-bg {
