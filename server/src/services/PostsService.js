@@ -49,7 +49,7 @@ class PostsService {
     return posts
   }
   async createPost(postData) {
-    const post = await dbContext.Post.create(postData)
+    const post = await (await dbContext.Post.create(postData)).populate('account', 'name picture id')
     post.likes = []
     return post
   }
