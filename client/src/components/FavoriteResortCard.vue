@@ -1,6 +1,6 @@
 <template>
-  <div class="component">
-    <section class=" row mt-5 resort-card rounded">
+  <div class="component bg-blur">
+    <section class=" row mt-5 rounded">
         <div class="col-8">
       <div class=" p-2 ">
       <h3 class="mb-0">{{ resort.resortName }}</h3>
@@ -39,9 +39,5 @@ export default {
 .bar{
   height: 20px;
   width: 150px;
-}
-.resort-card{
-  background-color: rgba(41, 38, 87, 0.493);
-  backdrop-filter: blur(4px);
 }
 </style>

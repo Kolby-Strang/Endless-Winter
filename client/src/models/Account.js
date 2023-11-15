@@ -8,5 +8,6 @@ export class Account {
     this.skier = data.skier
     this.snowBoarder = data.snowBoarder
     this.favorites = data.favorites
+    this.bio = data.bio
   }
 }
