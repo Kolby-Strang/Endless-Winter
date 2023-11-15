@@ -18,7 +18,7 @@
                 Manage Account
               </div>
             </router-link>
-            <div v-if="postModal" class="list-group-item dropdown-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#postModal">
+            <div v-if="postModal" class="list-group-item dropdown-item list-group-item-action" role="button" data-bs-toggle="modal" data-bs-target="#postModal">
               Create Post
             </div>
             <router-link :to="{ name: 'About' }">
