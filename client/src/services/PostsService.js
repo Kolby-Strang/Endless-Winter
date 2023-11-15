@@ -1,3 +1,4 @@
+import { Modal } from "bootstrap"
 import { AppState } from "../AppState.js"
 import { Comment } from "../models/Comment.js"
 import { Post } from "../models/Post.js"
@@ -26,6 +27,14 @@ class PostsService {
         const res = await api.post('api/posts', postData)
         const newPost = new Post(res.data)
         AppState.resortPosts.push(newPost)
+    }
+
+    async editPost(postData) {
+        const res = await api.put(`api/posts/${postData.id}`, postData)
+        logger.log(res.data)
+        const editedPost = new Post(res.data)
+        Modal.getOrCreateInstance('#editPostModal').hide()
+        AppState.activePost = editedPost
     }
 }
 

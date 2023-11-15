@@ -32,6 +32,7 @@ class PostsService {
     post.title = postData.title || post.title
     post.imgUrl = postData.imgUrl || post.imgUrl
     await post.save()
+    await post.populate('account')
     return post
   }
   async getPostsByAccountId(accountId) {
@@ -45,11 +46,13 @@ class PostsService {
   async getPostsByResortId(snoId) {
     const posts = await dbContext.Post.find({ snoId }).populate('account', 'name picture id').populate('likes')
 
+    // @ts-ignore
     posts.forEach(post => post.likes = post.likes.map(like => like.accountId))
     return posts
   }
   async createPost(postData) {
     const post = await (await dbContext.Post.create(postData)).populate('account', 'name picture id')
+    // @ts-ignore
     post.likes = []
     return post
   }
