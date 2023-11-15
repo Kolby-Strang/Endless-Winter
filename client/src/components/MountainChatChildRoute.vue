@@ -11,11 +11,11 @@
           </router-link>
         </div>
         <div class="col-4 py-1  rounded-end border-bottom border-primary border-5">
-          <p class="fs-1 mb-0">mountain chat</p>
+          <p class="fs-1 mb-0">community chat</p>
         </div>
       </section>
         <div class="col-12">
-          <h1>MOUNTAIN CHAT</h1>
+          <h1>community chat</h1>
         </div>
 </template>
 

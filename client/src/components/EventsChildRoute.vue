@@ -10,7 +10,7 @@
         </div>
         <div class="col-4 py-1">
           <router-link :to="{name:'Chat'}">
-            <p class="fs-1 mb-0 text-dark">mountain chat</p>
+            <p class="fs-1 mb-0 text-dark">community chat</p>
           </router-link>
         </div>
       </section>
