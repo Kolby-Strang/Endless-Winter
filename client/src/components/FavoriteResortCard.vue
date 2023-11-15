@@ -21,7 +21,6 @@
 
 
 <script>
-import { Resort } from "../models/Resort.js";
 import PercentageBar from "./PercentageBar.vue";
 export default {
     props: {

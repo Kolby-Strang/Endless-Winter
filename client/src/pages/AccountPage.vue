@@ -38,13 +38,11 @@
 </template>
 
 <script>
-import { computed, onMounted, watch, watchEffect } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState';
 import { useRoute } from "vue-router";
 import { accountService } from "../services/AccountService.js";
 import FavoriteResortCard from "../components/FavoriteResortCard.vue";
-import { resortsService } from "../services/ResortsService.js";
-import { logger } from "../utils/Logger.js";
 export default {
     setup() {
         const route = useRoute();
@@ -60,7 +58,7 @@ export default {
         onMounted(() => {
           AppState.activeFavoritesResorts = []
           AppState.activeProfile = {}
-          backgroundImage('src/assets/img/Blaze.png');
+          backgroundImage('src/assets/img/Kolby.png');
           getProfile();
         });
         return {
