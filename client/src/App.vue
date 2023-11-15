@@ -8,12 +8,14 @@
   <!-- <footer class="bg-dark text-light">
   </footer> -->
   <PostModal />
+  <EditPostModal />
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import EditPostModal from './components/EditPostModal.vue'
 
 export default {
   setup() {
@@ -21,13 +23,13 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, EditPostModal }
 }
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
-:root{
+:root {
   --main-height: calc(100vh - 32px - 64px);
 }
 
