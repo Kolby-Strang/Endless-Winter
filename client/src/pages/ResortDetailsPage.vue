@@ -1,6 +1,6 @@
 <template>
     <div class="row page-padding">
-        <div class="col-12 col-lg-7 pb-3 pb-lg-0">
+        <div :class="[(resort.lat ? 'col-lg-7' : ''), 'col-12 pb-3 pb-lg-0']">
             <div class="row gy-3">
                 <div class="col-12">
                     <div class="row bg-blur">
@@ -43,12 +43,12 @@
 
                 <div :class="{'col-12': !resort.trailImg, 'col-8': resort.trailImg, 'pe-0': true}">
                     <div class="row gy-3">
-                        <div class="col-6 ps-0">
+                        <div :class="[resort.lat ? 'col-6' : 'col-3', 'ps-0']">
                             <div class="bg-blur h-100">
                                 <PercentageBar :resort="resort" :trailsBar="true" />
                             </div>
                         </div>
-                        <div class="col-6 ps-0">
+                        <div :class="[resort.lat ? 'col-6' : 'col-3', 'ps-0']">
                             <div class="bg-blur h-100" :title="[resort.nightSkiing ? 'Night Skiing Available': 'Day Skiing Only']">
                                 <p class="m-0 d-flex justify-content-around">
                                     <i class="mdi mdi-white-balance-sunny text-warning fs-1"></i>
@@ -57,7 +57,7 @@
                                 <p class="m-0 text-center"><i class="mdi mdi-snowboard fs-1 text-primary"></i></p>
                             </div>
                         </div>
-                        <div class="col-12 ps-0">
+                        <div :class="[resort.lat ? 'col-12' : 'col-6', 'ps-0']">
                             <div class="bg-blur pe-0">
 
                                 <div class="d-flex">
@@ -81,9 +81,33 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-5 p-0 ps-lg-3">
-            <div class="bg-blur h-100">
-                weather
+        <div v-if="resort.lat" class="col-12 col-lg-5 p-0 ps-lg-3">
+            <div class="bg-blur h-100 container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <p>⛅</p>
+                        <p>70</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>💨</p>
+                        <p>23 m/h</p>
+                    </div>
+                    <div class="col-6">
+                        <p>high</p>
+                        <p>low</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">S</div>
+                    <div class="col">M</div>
+                    <div class="col">T</div>
+                    <div class="col">W</div>
+                    <div class="col">Th</div>
+                    <div class="col">F</div>
+                    <div class="col">S</div>
+                </div>
             </div>
         </div>
     </div>
@@ -95,6 +119,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- TODO MAKE SURE WHEN EXPANDED VIEW OPENS THE USER CAN SEE ALL THE TRAIL MAPS IF THERE ARE MULTIPLE -->
                     <img class="img-fluid" :src="resort.trailImg" alt="Trail Map Modal">
                 </div>
             </div>
@@ -108,13 +133,16 @@ import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted, ref } from 'vue';
 import {resortsService} from '../services/ResortsService'
+import {weatherService} from '../services/WeatherService'
 import { Resort } from '../models/Resort';
 import Pop from '../utils/Pop';
 export default {
     setup(){
         // VARIABLES
         const route = useRoute()
-        let resort = ref({})
+        const resort = ref({})
+        const currentWeather = ref({})
+        const weatherForecast = ref({})
         // FUNCTIONS
         function backgroundImage(imgUrl) {
             const body = document.getElementById('body');
@@ -125,6 +153,10 @@ export default {
         async function getResortById(resortId){
             const retrievedResort = await resortsService.getResortById(resortId)
             resort.value = new Resort(retrievedResort)
+            if(resort.value.lat && resort.value.lon){
+                currentWeather.value = await weatherService.getCurrentWeatherByGeoLocation(resort.value.lat, resort.value.lon)
+                weatherForecast.value = await weatherService.getForecastByGeoLocation(resort.value.lat, resort.value.lon)
+            }
         }
         function copyText(){
             const text = resort.value.address
@@ -139,6 +171,8 @@ export default {
         })
     return { 
         resort,
+        currentWeather,
+        weatherForecast,
         copyText 
      }
     }

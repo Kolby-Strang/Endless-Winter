@@ -14,6 +14,17 @@ export const resortsApi = Axios.create({
   }
 })
 
+
+export const weatherApi = Axios.create({
+  baseURL: 'https://api.aerisapi.com/',
+  params:{
+    client_id: 'ITG2fTgz0yxypLLblGBBu',
+    client_secret: 'ruUibRn1x3wWhk9bTlcPQvUeMoFPenRZSgZWmhLz',
+    format: 'json'
+  }
+})
+
+
 api.interceptors.request.use(config => config, handleAxiosError)
 api.interceptors.response.use(response => response, handleAxiosError)
 
