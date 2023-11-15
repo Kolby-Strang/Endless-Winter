@@ -1,7 +1,29 @@
 <template>
-  <div class="about">
-    <h1>This is the about page</h1>
-  </div>
+  <section class="row about margin justify-content-center">
+    <div class="col-4 bg-blur text-center">
+      <h1>about the dev team</h1>
+    </div>
+  </section>
+  <section class="row about margin justify-content-center">
+    <div class="col-4 bg-blur text-center">
+      <img class="img-dev" src="src/assets/img/Kolby.png" alt="dev Image">
+    </div>
+  </section>
+  <section class="row about margin justify-content-center">
+    <div class="col-4 bg-blur text-center">
+      <img class="img-dev" src="src/assets/img/Liam.png" alt="dev Image">
+    </div>
+  </section>
+  <section class="row about margin justify-content-center">
+    <div class="col-4 bg-blur text-center">
+      <img class="img-dev" src="src/assets/img/Blaze.png" alt="dev Image">
+    </div>
+  </section>
+  <section class="row about margin justify-content-center">
+    <div class="col-4 bg-blur text-center">
+      <img class="img-dev" src="src/assets/img/Marc.png" alt="dev Image">
+    </div>
+  </section>
 </template>
 
 <script>
@@ -13,3 +35,13 @@ export default {
   }
 }
 </script>
+
+<style>
+  .img-dev{
+    width: 5rem;
+    aspect-ratio: 1/1;
+  }
+  .margin{
+    margin-top: 5rem;
+  }
+</style>
