@@ -21,6 +21,12 @@ class PostsService {
         AppState.activePost = postData
 
     }
+
+    async createPost(postData) {
+        const res = await api.post('api/posts', postData)
+        const newPost = new Post(res.data)
+        AppState.resortPosts.push(newPost)
+    }
 }
 
 export const postsService = new PostsService()
