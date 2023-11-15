@@ -15,8 +15,14 @@
         </div>
       </section>
         <div class="col-12">
-          <h1>community chat</h1>
-        </div>
+          <section  class="row justify-content-center">
+            <div class="col-5" v-for="post in posts" :key="post.id">
+              
+            </div>
+              
+            </section>
+            </div>
+          
 </template>
 
 
@@ -41,7 +47,9 @@ export default {
         Pop.error(error)
       }
     }
-  return {  }
+  return { 
+    posts: computed(() => AppState.resortPosts)
+   }
   }
 };
 </script>
