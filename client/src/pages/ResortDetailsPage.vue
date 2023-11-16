@@ -1,5 +1,5 @@
 <template>
-    <div class="row page-padding">
+    <div v-if="resort.id" class="row page-padding">
         <div :class="[(resort.lat ? 'col-lg-7' : ''), 'col-12 pb-3 pb-lg-0']">
             <div class="row gy-3">
                 <div class="col-12">
@@ -81,32 +81,32 @@
                 </div>
             </div>
         </div>
-        <div v-if="resort.lat" class="col-12 col-lg-5 p-0 ps-lg-3">
-            <div class="bg-blur h-100 container-fluid">
+        <div v-if="currentWeather.icon" class="col-12 col-lg-5 p-0 ps-lg-3">
+            <div class="bg-blur h-100 container-fluid d-flex flex-column justify-content-between">
                 <div class="row">
-                    <div class="col-12">
-                        <p>⛅</p>
-                        <p>70</p>
+                    <div class="col-12 text-center">
+                        <img class="weather-icon" :src="`src/assets/img/AerisIcons/${currentWeather.icon}`" :alt="currentWeather.weather" :title="currentWeather.weather">
+                        <p class="fs-1 m-0">{{currentWeather.tempF.toFixed(0)}}°F</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
-                        <p>💨</p>
-                        <p>23 m/h</p>
+                    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+                        <i class="mdi mdi-weather-dust wind-icon"></i>
+                        <p class="fs-2">{{ currentWeather.windSpeedMPH.toFixed(0) }}<span class="fs-5 text-light">m/h</span></p>
                     </div>
-                    <div class="col-6">
-                        <p>high</p>
-                        <p>low</p>
+                    <div v-if="weatherForecast[0]" class="col-6 d-flex flex-column justify-content-center align-items-center fs-2">
+                        <p><i class="mdi mdi-arrow-up"></i> {{ weatherForecast[0].maxTempF }}°F</p>
+                        <p class="m-0"><i class="mdi mdi-arrow-down"></i> {{ weatherForecast[0].minTempF }}°F</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">S</div>
-                    <div class="col">M</div>
-                    <div class="col">T</div>
-                    <div class="col">W</div>
-                    <div class="col">Th</div>
-                    <div class="col">F</div>
-                    <div class="col">S</div>
+                    <div v-for="forecast in weatherForecast.filter(forecast => forecast.date.toLocaleDateString() != currentWeather.date.toLocaleDateString())" :key="forecast.date" class="col forecast-item">
+                        <div class="text-center">
+                            <p class="fs-5 fs-md-4 m-0">{{ getDayAbbreviation(forecast.date.getDay()) }}</p>
+                            <img class="img-fluid" :src="`src/assets/img/AerisIcons/${forecast.icon}`" :alt="forecast.weather">
+                            <p class="m-0">{{ forecast.maxTempF }}°F</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,7 +142,7 @@ export default {
         const route = useRoute()
         const resort = ref({})
         const currentWeather = ref({})
-        const weatherForecast = ref({})
+        const weatherForecast = ref([])
         // FUNCTIONS
         function backgroundImage(imgUrl) {
             const body = document.getElementById('body');
@@ -163,6 +163,10 @@ export default {
             navigator.clipboard.writeText(text)
             Pop.success('Address Copied!')
         }
+        function getDayAbbreviation(dayNum){
+            const dayAbbreviations = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+            return dayAbbreviations[dayNum]
+        }
 
         // LIFECYCLE
         onMounted(()=>{
@@ -173,7 +177,8 @@ export default {
         resort,
         currentWeather,
         weatherForecast,
-        copyText 
+        copyText,
+        getDayAbbreviation
      }
     }
 };
@@ -230,15 +235,20 @@ export default {
 }
 .snowflake{
     font-size: 70pt;
-    padding-right: 1rem;
+    padding-right: .5rem;
+    margin-right: 1rem;
+    border-right: solid #ffffff 3px;
 }
-// .snowflake::after{
-//     font-size: 0;
-//     position: absolute;
-//     content: '.';
-//     background-color: rgb(76, 76, 76);
-//     height: 82%;
-//     width: 3px;
-// }
+.weather-icon{
+    width: 20%;
+}
+.wind-icon{
+    font-size: 60pt;
+    display: block;
+    height: 95px;
+}
+.forecast-item{
+    overflow-x: hidden;
+}
 
 </style>
