@@ -15,7 +15,7 @@
         </div>
       </section>
       <section v-for="review in reviews" :key="review.id" class="row justify-content-center mt-5">
-        <div  class="col-10 background-blur rounded  ">
+        <div  class="col-10 bg-blur rounded  ">
           <section class="row text-light p-2 mt-1 ">
             <div class="col-1">
               <img class="rounded-circle img-pfp" :src="review.account.picture" alt="">
@@ -89,9 +89,5 @@ export default {
 
 .star-color {
   color: #BDCFF3;
-}
-.background-blur {
-  background-color: rgba(41, 38, 87, 0.493);
-  backdrop-filter: blur(4px);
 }
 </style>
