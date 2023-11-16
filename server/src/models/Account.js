@@ -11,7 +11,7 @@ export const AccountSchema = new Schema(
     isOwner: { type: Boolean, required: true, default: false },
     skier: { type: Boolean, required: true, default: false },
     snowBoarder: { type: Boolean, required: true, default: false },
-    pinnedFavorite: { type: Number, required: true, default: '' },
+    pinnedFavorite: { type: Number, default: '' },
     bio: { type: String, maxLength: 500, default: '' }
   },
   { timestamps: true, toJSON: { virtuals: true } }
