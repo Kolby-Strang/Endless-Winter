@@ -1,6 +1,6 @@
 <template>
   
-  <router-link :to="{name:'Post', params: {postId: postData.id}}">
+  <router-link title="Post Details" :to="{name:'Post', params: {postId: postData.id}}">
     <section class="row rounded img-bg linear-bg" :class="postData.imgUrl ?  '' : 'blur-bg' "
     :style="{backgroundImage: `url('${postData.imgUrl}')`, backgroundPosition: 'center', backgroundSize: 'cover'}">
       <div class="col-12">
@@ -9,7 +9,7 @@
             <p v-if="postData.imgUrl == undefined" class="mb-0 fs-4 ms-1 text-start">{{ postData.body }}</p>
           </div>
           <div class="col-1 col-md-2  align-self-end mb-2">
-            <img class="pfp-img rounded-circle" :src="postData.account.picture" :alt="postData.account.name">
+            <img :title="postData.account.name" class="pfp-img rounded-circle" :src="postData.account.picture" :alt="postData.account.name">
           </div>
           <div class="col-11 col-md-10 text-light align-self-end">
             <p class="fs-3 ms-2">{{ postData.title }}</p>

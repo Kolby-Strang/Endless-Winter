@@ -14,9 +14,10 @@
           <p class="fs-1 mb-0">community chat</p>
         </div>
       </section>
-          <section class="row justify-content-center mt-3">
+          <section class="row justify-content-center mt-5">
             <div class="col-12 col-md-6 col-lg-4 mb-4 rounded px-4 " v-for="post in posts" :key="post.id" >
               <PostCard :postData="post" />
+
             </div>
           </section>
           
