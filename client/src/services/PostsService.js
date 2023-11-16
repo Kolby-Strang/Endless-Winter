@@ -36,6 +36,15 @@ class PostsService {
         Modal.getOrCreateInstance('#editPostModal').hide()
         AppState.activePost = editedPost
     }
+
+    async destroyPost(postId) {
+        const res = await api.delete(`api/posts/${postId}`)
+
+        return res.data
+
+
+    }
+
 }
 
 export const postsService = new PostsService()
