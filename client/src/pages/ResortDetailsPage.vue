@@ -94,7 +94,7 @@
                         <i class="mdi mdi-weather-dust wind-icon"></i>
                         <p class="fs-2">{{ currentWeather.windSpeedMPH.toFixed(0) }}<span class="fs-5 text-light">m/h</span></p>
                     </div>
-                    <div class="col-6 d-flex flex-column justify-content-center align-items-center fs-2">
+                    <div v-if="weatherForecast[0]" class="col-6 d-flex flex-column justify-content-center align-items-center fs-2">
                         <p><i class="mdi mdi-arrow-up"></i> {{ weatherForecast[0].maxTempF }}°F</p>
                         <p class="m-0"><i class="mdi mdi-arrow-down"></i> {{ weatherForecast[0].minTempF }}°F</p>
                     </div>
