@@ -24,7 +24,8 @@ class CommentsService {
     }
     async destroyComment(commentId, userId) {
         const comment = await this.getCommentById(commentId)
-        if (comment.accountId.toString() != userId) {
+        const thing = await dbContext.Post.findById(comment.thingId)
+        if (comment.accountId.toString() != userId && thing.accountId.toString() != userId) {
             throw new Forbidden(`Comment with ID: ${commentId} is not yours to delete`)
         }
         await comment.delete()
