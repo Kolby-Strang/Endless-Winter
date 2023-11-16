@@ -1,7 +1,7 @@
 <template>
   
   <router-link :to="{name:'Post', params: {postId: postData.id}}">
-    <section class="row rounded img-bg linear-bg"
+    <section class="row rounded img-bg linear-bg" :class="postData.imgUrl ?  '' : 'blur-bg' "
     :style="{backgroundImage: `url('${postData.imgUrl}')`, backgroundPosition: 'center', backgroundSize: 'cover'}">
       <div class="col-12">
         <section class="row rounded px-2 linear-bg">
@@ -39,7 +39,9 @@ export default {
   height: 3rem;
 }
 
-
+.blur-bg {
+  backdrop-filter: blur(4px);
+}
 
 .linear-bg {
   height: 25dvh;
