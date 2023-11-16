@@ -14,23 +14,12 @@
           <p class="fs-1 mb-0">community chat</p>
         </div>
       </section>
-        <div class="col-12">
-          <section  class="row justify-content-around mt-3">
-            <div class="col-5 mb-4 rounded " v-for="post in posts" :key="post.id"  :style="{backgroundImage: `url('${post.imgUrl}')`, backgroundPosition: 'center', backgroundSize: 'cover'}" >
-             <section class="row  linear-bg px-2">
-              <div class="col-12 text-light mt-3">
-                <p v-if="post.imgUrl == undefined" class="mb-0 fs-5">{{ post.body }}</p>
-              </div>
-              <div class="col-1 align-self-end mb-2">
-                <img class="pfp-img rounded-circle" :src="post.account.picture" :alt="post.account.name">
-              </div>
-              <div class="col-11 text-light align-self-end">
-                <p class="fs-4">{{ post.title }}</p>
-              </div>
-             </section>
+          <section class="row justify-content-center mt-5">
+            <div class="col-12 col-md-6 col-lg-4 mb-4 rounded px-4 " v-for="post in posts" :key="post.id" >
+              <PostCard :postData="post" />
+
             </div>
           </section>
-        </div>
           
 </template>
 
@@ -41,25 +30,27 @@ import { computed, onMounted } from 'vue';
 import Pop from "../utils/Pop";
 import { useRoute } from "vue-router";
 import { resortsService } from "../services/ResortsService";
+import PostCard from "./PostCard.vue";
 export default {
-  setup(){
-    const route = useRoute()
-    onMounted(() => {
-      
-      getPostsByResortId()
-    })
-    async function getPostsByResortId() {
-      try {
-        const resortId = route.params.resortId
-        await resortsService.getPostsByResortId(resortId)
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
-  return { 
-    posts: computed(() => AppState.resortPosts)
-    }
-  }
+    setup() {
+        const route = useRoute();
+        onMounted(() => {
+            getPostsByResortId();
+        });
+        async function getPostsByResortId() {
+            try {
+                const resortId = route.params.resortId;
+                await resortsService.getPostsByResortId(resortId);
+            }
+            catch (error) {
+                Pop.error(error);
+            }
+        }
+        return {
+            posts: computed(() => AppState.resortPosts)
+        };
+    },
+    components: { PostCard }
 };
 </script>
 
@@ -70,15 +61,5 @@ export default {
   backdrop-filter: blur(4px);
 }
 
-.pfp-img {
-  height: 3rem;
-}
-
-.linear-bg {
-  height: 10dvh;
-  background-color: #fff;
-  background: rgb(0,0,0);
-  background: linear-gradient(to bottom,rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 89%, rgba(0,0,0,1) 99%);
-}
 
 </style>

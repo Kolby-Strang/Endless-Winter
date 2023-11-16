@@ -1,10 +1,10 @@
 <template>
   <section class="row justify-content-center margin ">
     <!-- SECTION resort details card -->
-    <div class="col-10 background-blur rounded">
+    <div class="col-10 bg-blur rounded">
+      <router-link title="Resort Details" class="text-light" :to="{name: 'ResortDetails', params: {resortId: route.params.resortId}}">
       <section class="row p-1 ">
         <div class="col-11 text-light">
-            <router-link title="Resort Details" class="text-light" :to="{name: 'ResortDetails', params: {resortId: route.params.resortId}}">
             <p class="fs-1 mb-0 d-inline">
               {{ resort.resortName }}
             </p> 
@@ -14,10 +14,9 @@
           <p class="mb-0 fs-3">
             {{ `${resort.state}, ${resort.country}` }}
           </p>
-        </router-link>
-      </div>
-      <div class="col-1 text-end ">
-        <div class="">
+        </div>
+        <div class="col-1 text-end ">
+          <div class="">
           <i class="fs-2 mdi mdi-star"></i>
         </div>
       </div>
@@ -36,6 +35,7 @@
           
         </div>
       </section>
+    </router-link>
     </div>
     <!-- !SECTION -->
     <div class="col-11 mt-5">
@@ -58,7 +58,8 @@ export default {
         
         const route = useRoute();
         onMounted(() => {
-            getResort();
+          backgroundImage('src/assets/img/hero.jpg')
+          getResort();
         });
         async function getResort() {
           try {
@@ -68,6 +69,12 @@ export default {
           } catch (error) {
             Pop.error(error)
           }
+        }
+        function backgroundImage(imgUrl) {
+            const body = document.getElementById('body');
+            body.style.backgroundImage = `url('${imgUrl}')`;
+            body.style.backgroundSize = 'cover';
+            body.style.backgroundPosition = 'center';
         }
         return {
           route,
@@ -86,11 +93,6 @@ export default {
   width: 100%;
   object-fit: cover;
   object-position: center;
-}
-
-.background-blur {
-  background-color: rgba(41, 38, 87, 0.493);
-  backdrop-filter: blur(4px);
 }
 
 
