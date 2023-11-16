@@ -17,6 +17,8 @@ class AccountService {
     try {
       const res = await api.get(`/account/${accountId}`)
       AppState.activeProfile = new Account(res.data)
+      AppState.activeProfileSki = res.data.skier
+      AppState.activeProfileSno = res.data.snowBoarder
       await resortsService.getFavoriteResorts(res.data.favorites)
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
