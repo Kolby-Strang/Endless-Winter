@@ -10,6 +10,8 @@ export const AppState = reactive({
   account: {},
   /** @type {import('./models/Account.js').Account} */
   activeProfile: {},
+  activeProfileSki: null,
+  activeProfileSno: null,
   /** @type {import('./models/Resort.js').Resort} */
   pinedResort: {},
   /** @type {Resort} */
@@ -21,4 +23,5 @@ export const AppState = reactive({
   resorts: [...usa, ...can, ...shs],
   comments: [],
   activePost: {},
+  isEditActive: false,
 })
