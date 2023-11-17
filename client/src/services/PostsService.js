@@ -10,14 +10,12 @@ class PostsService {
     async getCommentsByPostsId(postId) {
 
         const res = await api.get(`api/posts/${postId}/comments`)
-        logger.log(res.data)
         const commentData = res.data.map(comment => new Comment(comment))
         AppState.comments = commentData
     }
 
     async getPostByPostId(postId) {
         const res = await api.get(`api/posts/${postId}`)
-        logger.log(res.data)
         const postData = new Post(res.data)
         AppState.activePost = postData
 
@@ -31,7 +29,6 @@ class PostsService {
 
     async editPost(postData) {
         const res = await api.put(`api/posts/${postData.id}`, postData)
-        logger.log(res.data)
         const editedPost = new Post(res.data)
         Modal.getOrCreateInstance('#editPostModal').hide()
         AppState.activePost = editedPost

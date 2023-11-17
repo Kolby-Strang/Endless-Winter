@@ -23,5 +23,6 @@ export const AppState = reactive({
   resorts: [...usa, ...can, ...shs],
   comments: [],
   activePost: {},
+  commentToBeEdited: {},
   isEditActive: false,
 })

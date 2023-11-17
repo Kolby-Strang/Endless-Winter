@@ -16,6 +16,7 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import EditPostModal from './components/EditPostModal.vue'
+import EditCommentModal from './components/EditCommentModal.vue'
 
 export default {
   setup() {
@@ -23,7 +24,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, EditPostModal }
+  components: { Navbar, EditPostModal, EditCommentModal }
 }
 </script>
 <style lang="scss">
