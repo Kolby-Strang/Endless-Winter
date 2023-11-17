@@ -10,7 +10,7 @@
                             <p 
                                 title="Click to Copy Full Address" 
                                 role="button" 
-                                class="fs-4 fw-light text-primary"
+                                class="fs-4 fw-light text-primary copy-elem"
                                 @click="copyText()"
                                 >
                                 {{`${resort.state}, ${resort.country}`}}<i class="mdi mdi-clipboard-outline"></i>
@@ -28,11 +28,11 @@
                     </div>
                 </div>
 
-                <div v-if="resort.trailImg" class="col-4 ps-0">
+                <div v-if="resort.trailImgs[0]" class="col-4 ps-0">
                     <div class="bg-blur h-100 p-2">
                         <div class="position-relative h-100 w-100">
 
-                            <img class="trail-image" :src="resort.trailImg" alt="Trail Map">
+                            <img class="trail-image" :src="resort.trailImgs[0]" alt="Trail Map">
                             
                             <button class="btn expand-button" type="button" data-bs-toggle="modal" data-bs-target="#trailImageModal">
                                 <i class="mdi mdi-arrow-expand-all fs-1"></i>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
 
-                <div :class="{'col-12': !resort.trailImg, 'col-8': resort.trailImg, 'pe-0': true}">
+                <div :class="{'col-12': !resort.trailImgs[0], 'col-8': resort.trailImgs[0], 'pe-0': true}">
                     <div class="row gy-3">
                         <div :class="[resort.lat ? 'col-6' : 'col-3', 'ps-0']">
                             <div class="bg-blur h-100">
@@ -111,7 +111,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="trailImageModal" tabindex="-1" aria-labelledby="trailImageModalLabel" aria-hidden="true">
+    <div v-if="resort.trailImgs" class="modal fade" id="trailImageModal" tabindex="-1" aria-labelledby="trailImageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content bg-blur">
                 <div class="modal-header">
@@ -120,7 +120,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- TODO MAKE SURE WHEN EXPANDED VIEW OPENS THE USER CAN SEE ALL THE TRAIL MAPS IF THERE ARE MULTIPLE -->
-                    <img class="img-fluid" :src="resort.trailImg" alt="Trail Map Modal">
+                    <img v-for="trailImg in resort.trailImgs" :key="trailImg" class="w-100 mb-4" :src="trailImg" alt="Trail Map">
                 </div>
             </div>
         </div>
@@ -133,7 +133,6 @@ import { useRoute } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import {resortsService} from '../services/ResortsService'
 import {weatherService} from '../services/WeatherService'
-import { Resort } from '../models/Resort';
 import Pop from '../utils/Pop';
 export default {
     setup(){
@@ -151,7 +150,7 @@ export default {
         }
         async function getResortById(resortId){
             const retrievedResort = await resortsService.getResortById(resortId)
-            resort.value = new Resort(retrievedResort)
+            resort.value = retrievedResort
             if(resort.value.lat && resort.value.lon){
                 currentWeather.value = await weatherService.getCurrentWeatherByGeoLocation(resort.value.lat, resort.value.lon)
                 weatherForecast.value = await weatherService.getForecastByGeoLocation(resort.value.lat, resort.value.lon)
@@ -252,6 +251,9 @@ export default {
 }
 .forecast-item:last-child{
     border-right: none;
+}
+.copy-elem{
+    width: max-content;
 }
 
 </style>

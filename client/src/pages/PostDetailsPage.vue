@@ -38,8 +38,9 @@
                     <div class="d-flex">
                         <img class="profile-picture rounded-circle" :src="account.picture" alt="profile picture">
                         <form class="d-flex align-items-center w-100" @submit.prevent="createComment()">
-                            <textarea type="text" class="h-100 ms-2 w-100 bg-blur rounded-3 text-white"
-                                placeholder="     Input Comment"></textarea>
+                            <textarea v-model="editable.body" type="text" name="body"
+                                class="h-100 ms-2 w-100 bg-blur rounded-3 text-white"
+                                placeholder="Input Comment"></textarea>
                             <button type="submit" class="btn rounded-pill text-light ms-2">Make Comment</button>
                         </form>
                     </div>
@@ -80,7 +81,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop.js';
 import { postsService } from '../services/PostsService.js'
@@ -90,6 +91,8 @@ import EditCommentModal from '../components/EditCommentModal.vue';
 
 export default {
     setup() {
+        const editable = ref({})
+
         function backgroundImage(imgUrl) {
             const body = document.getElementById('body');
             body.style.backgroundImage = `url('${imgUrl}')`;
@@ -122,6 +125,7 @@ export default {
             await postsService.getPostByPostId(postId);
         }
         return {
+            editable,
             comments: computed(() => AppState.comments),
             post: computed(() => AppState.activePost),
             account: computed(() => AppState.account),
@@ -157,8 +161,10 @@ export default {
 
             async createComment() {
                 try {
-                    const commentData =
-                        await commentsService.createComment()
+                    const commentData = editable.value
+                    commentData.thingId = route.params.postId
+                    await commentsService.createComment(commentData)
+                    editable.value = {}
                 } catch (error) {
                     Pop.error(error)
                 }

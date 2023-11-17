@@ -7,3 +7,6 @@ export const FavoriteSchema = new Schema({
     timestamps: true,
     toJSON: { virtuals: true }
 })
+
+
+FavoriteSchema.index({ accountId: 1, snoId: 1 }, { unique: true })
