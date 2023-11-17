@@ -59,6 +59,7 @@ export default {
     setup() {
         const editable = ref({})
         const route = useRoute();
+        const watchableAccountId = computed(()=>route.params.accountId)
         function backgroundImage(imgUrl) {
             const body = document.getElementById('body');
             body.style.backgroundImage = `url('${imgUrl}')`;
@@ -89,7 +90,7 @@ export default {
           }
           
         }
-        watch(route.params.accountId,() => {
+        watch(watchableAccountId,() => {
           AppState.activeFavoritesResorts = []
           AppState.activeProfile = {}
           backgroundImage('src/assets/img/AccountBg.jpg');
