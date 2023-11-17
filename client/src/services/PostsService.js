@@ -2,7 +2,6 @@ import { Modal } from "bootstrap"
 import { AppState } from "../AppState.js"
 import { Comment } from "../models/Comment.js"
 import { Post } from "../models/Post.js"
-import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class PostsService {
