@@ -130,8 +130,7 @@
 
 <script>
 import { useRoute } from 'vue-router';
-import { AppState } from '../AppState';
-import { computed, reactive, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import {resortsService} from '../services/ResortsService'
 import {weatherService} from '../services/WeatherService'
 import { Resort } from '../models/Resort';
