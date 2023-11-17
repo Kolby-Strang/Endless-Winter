@@ -5,7 +5,7 @@ export const AccountSchema = new Schema(
   {
     subs: [{ type: String, unique: true }],
     email: { type: String, lowercase: true, unique: true },
-    name: { type: String, required: true },
+    name: { type: String, required: true, maxLength: 50, minLength: 2 },
     picture: { type: String },
     resortAdmin: { type: Number },
     isOwner: { type: Boolean, required: true, default: false },

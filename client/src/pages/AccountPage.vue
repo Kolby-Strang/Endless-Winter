@@ -9,8 +9,8 @@
             </div>
             <div class="col-6 p-3 d-flex flex-column justify-content-between">
               <div>
-                <input v-model="editable.name" :disabled="!isEditActive" type="text" class="form-control text-center fs-1" id="exampleFormControlInput1" placeholder="you need a name">
-                <input v-model="editable.bio" :disabled="!isEditActive" type="text" class="form-control text-center" id="exampleFormControlInput1" placeholder="enter bio here">
+                <input v-model="editable.name" :disabled="!isEditActive" type="text" class="form-control text-center fs-1 input" id="exampleFormControlInput1" placeholder="you need a name" required minlength="2" maxlength="50">
+                <textarea v-model="editable.bio" :disabled="!isEditActive" class="form-control text-center input" id="exampleFormControlInput1" placeholder="enter bio here" maxlength="500"></textarea>
               </div>
               <div>
                 <div v-if="!isEditActive" >
@@ -30,9 +30,9 @@
             </div>
           </section>
         </div>
-        <div class="col-6 text-light">
-          flksjd;l
-        </div>
+        <!-- <div v-for class="col-6 text-light">
+          <PostCards />
+        </div> -->
       </section>
     </div>
     <div class="col-3 pt-5 scrollable">
@@ -72,7 +72,9 @@ export default {
         async function editAccount(){
           AppState.isEditActive = !AppState.isEditActive
           if(!AppState.isEditActive){
-            await accountService.updateAccount()
+            editable.value.skier = AppState.activeProfileSki
+            editable.value.snowboarder = AppState.activeProfileSno
+            await accountService.updateAccount(editable.value)
           }
           // logger.log(AppState.isEditActive)
         }
@@ -109,14 +111,17 @@ export default {
 </script>
 
 <style scoped>
-input{
+.input{
   color: white !important;
   background: none !important; 
   border: none !important;
   box-shadow: none !important;
 }
+.input:last-child{
+  height: 30vh;
+}
 
-input::placeholder{
+.input::placeholder{
   color: white;
 }
 .red::placeholder{
