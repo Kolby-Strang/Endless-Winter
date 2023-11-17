@@ -18,7 +18,7 @@ export class Resort {
     this.primarySurfaceCondition = data.primarySurfaceCondition
     this.resortType = data.resortType
     this.resortImg = data.resortImg
-    this.trailImg = data.trailImg
+    this.trailImgs = data.trailImgs
     this.address = data.address
     this.lat = data.lat
     this.lon = data.lon
