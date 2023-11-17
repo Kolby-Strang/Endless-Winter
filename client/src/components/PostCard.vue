@@ -9,7 +9,10 @@
             <p v-if="postData.imgUrl == undefined" class="mb-0 fs-4 ms-1 text-start">{{ postData.body }}</p>
           </div>
           <div class="col-1 col-md-2  align-self-end mb-2">
-            <img :title="postData.account.name" class="pfp-img rounded-circle" :src="postData.account.picture" :alt="postData.account.name">
+            <router-link :to="{name: 'Account', params: {accountId: postData.account.id}}" >
+              <img :title="postData.account.name" class="pfp-img rounded-circle" :src="postData.account.picture" :alt="postData.account.name">
+            </router-link>
+
           </div>
           <div class="col-11 col-md-10 text-light align-self-end">
             <p class="fs-3 ms-2">{{ postData.title }}</p>

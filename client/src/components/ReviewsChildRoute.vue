@@ -18,7 +18,9 @@
         <div  class="col-10 bg-blur rounded  ">
           <section class="row text-light p-2 mt-1 ">
             <div class="col-1">
-              <img :title="review.account.name" class="rounded-circle img-pfp" :src="review.account.picture" alt="">
+              <router-link :to="{name: 'Account', params: {accountId: review.account.id}}" >
+                <img :title="review.account.name" class="rounded-circle img-pfp" :src="review.account.picture" alt="">
+              </router-link>
             </div>
             <div class="col-8 fs-3">
               <p>{{ review.title }}</p>
