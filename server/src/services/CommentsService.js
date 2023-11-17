@@ -41,7 +41,7 @@ class CommentsService {
         const comment = await dbContext.Comment.create(commentData)
         // @ts-ignore
         comment.likes = []
-        return comment
+        return comment.populate('account')
     }
 
 }
