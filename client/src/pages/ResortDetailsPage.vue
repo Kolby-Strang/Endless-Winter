@@ -66,8 +66,8 @@
                                     </div>
                                     <div>
                                         <div v-if="resort.snowComments || resort.primarySurfaceCondition" class="fw-bold fs-3 d-flex flex-column justify-content-around h-100">
-                                            <p class="mb-0">{{ resort.snowComments }}</p>
-                                            <p class="mb-0">{{ resort.primarySurfaceCondition }}</p>
+                                            <p v-if="resort.snowComments" class="mb-0">{{ resort.snowComments }}</p>
+                                            <p v-if="resort.primarySurfaceCondition" class="mb-0">{{ resort.primarySurfaceCondition }}</p>
                                         </div>
                                         <div v-else class="fw-bold fs-4 text-secondary d-flex flex-column justify-content-around h-100">
                                             <p class="mb-0">No Snow Data</p>
