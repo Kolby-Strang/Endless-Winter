@@ -13,7 +13,7 @@
                 <textarea v-model="editable.bio" :disabled="!isEditActive" class="form-control text-center input" id="exampleFormControlInput1" placeholder="enter bio here" maxlength="500"></textarea>
               </div>
               <div>
-                <div v-if="!isEditActive" >
+                <div v-if="!isEditActive">
                   <i v-if="ski" class="mdi mdi-ski fs-icon color-0"></i>
                   <i v-if="snow" class="mdi mdi-snowboard fs-icon color-1"></i>
                 </div>
@@ -25,7 +25,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-1 text-end">
+            <div v-if="AppState.user.id == AppState.activeProfile.id" class="col-1 text-end">
               <i @click="editAccount()" role="button" class="mdi mdi-pen fs-1"></i>
             </div>
           </section>
