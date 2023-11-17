@@ -47,18 +47,19 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted, watch } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 import Pop from "../utils/Pop";
 import { resortsService } from "../services/ResortsService";
 import { useRoute } from "vue-router";
 import PercentageBar from "../components/PercentageBar.vue";
 import { logger } from "../utils/Logger";
+
 export default {
     setup() {
         
         const route = useRoute();
         onMounted(() => {
-          backgroundImage('src/assets/img/hero.jpg')
+          backgroundImage()
           getResort();
         });
         watch(AppState.resortReviews, () => {
@@ -73,9 +74,9 @@ export default {
             Pop.error(error)
           }
         }
-        function backgroundImage(imgUrl) {
+        function backgroundImage() {
             const body = document.getElementById('body');
-            body.style.backgroundImage = `url('${imgUrl}')`;
+            body.style.backgroundImage = `url('${AppState.bgImages.hero}')`;
             body.style.backgroundSize = 'cover';
             body.style.backgroundPosition = 'center';
         }

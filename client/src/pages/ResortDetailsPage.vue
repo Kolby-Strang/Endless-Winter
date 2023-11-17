@@ -134,6 +134,7 @@ import { onMounted, ref } from 'vue';
 import {resortsService} from '../services/ResortsService'
 import {weatherService} from '../services/WeatherService'
 import Pop from '../utils/Pop';
+import { AppState } from '../AppState';
 export default {
     setup(){
         // VARIABLES
@@ -142,9 +143,9 @@ export default {
         const currentWeather = ref({})
         const weatherForecast = ref([])
         // FUNCTIONS
-        function backgroundImage(imgUrl) {
+        function backgroundImage() {
             const body = document.getElementById('body');
-            body.style.backgroundImage = `url('${imgUrl}')`;
+            body.style.backgroundImage = `url('${AppState.bgImages.hero}')`;
             body.style.backgroundSize = 'cover';
             body.style.backgroundPosition = 'center';
         }
@@ -168,7 +169,7 @@ export default {
 
         // LIFECYCLE
         onMounted(()=>{
-            backgroundImage('src/assets/img/hero.jpg')
+            backgroundImage()
             getResortById(route.params.resortId)
         })
     return { 

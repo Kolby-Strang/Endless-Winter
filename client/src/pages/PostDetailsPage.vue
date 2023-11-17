@@ -89,13 +89,14 @@ import { router } from '../router.js';
 import { commentsService } from '../services/CommentsService.js'
 import EditCommentModal from '../components/EditCommentModal.vue';
 
+
 export default {
     setup() {
         const editable = ref({})
 
-        function backgroundImage(imgUrl) {
+        function backgroundImage() {
             const body = document.getElementById('body');
-            body.style.backgroundImage = `url('${imgUrl}')`;
+            body.style.backgroundImage = `url('${AppState.bgImages.hero}')`;
             body.style.backgroundSize = 'cover';
             body.style.backgroundPosition = 'center';
         }
@@ -107,7 +108,7 @@ export default {
                     id: 'lol'
                 }
             };
-            backgroundImage('src/assets/img/hero.jpg');
+            backgroundImage();
             getCommentsByPostsId();
             getPostByPostId();
         });

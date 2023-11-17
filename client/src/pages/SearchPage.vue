@@ -32,13 +32,13 @@ export default {
   setup() {
     const route = useRoute()
     const editable = ref(`${route.query.search}`)
-    function background(imgUrl) {
+    function background() {
       const body = document.getElementById('body')
-      body.style.background = `url('${imgUrl}')`
+      body.style.background = `url('${AppState.bgImages.search}')`
       body.style.backgroundSize = 'cover'
       body.style.backgroundPosition = 'top'
     }
-    onMounted(() => background('../src/assets/img/searchBg.jpg'))
+    onMounted(() => background())
     return {
       editable,
       resorts: computed(() => {

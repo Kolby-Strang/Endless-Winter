@@ -59,9 +59,9 @@ export default {
     setup() {
         const editable = ref({})
         const route = useRoute();
-        function backgroundImage(imgUrl) {
+        function backgroundImage() {
             const body = document.getElementById('body');
-            body.style.backgroundImage = `url('${imgUrl}')`;
+            body.style.backgroundImage = `url('${AppState.bgImages.account}')`;
             body.style.backgroundSize = 'cover';
             body.style.backgroundPosition = 'center';
         }
@@ -92,7 +92,7 @@ export default {
         onMounted(() => {
           AppState.activeFavoritesResorts = []
           AppState.activeProfile = {}
-          backgroundImage('src/assets/img/AccountBg.jpg');
+          backgroundImage();
           getProfile();
         });
         return {
