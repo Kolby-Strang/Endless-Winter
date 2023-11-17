@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <div v-if="resort.trailImgs[0]" class="col-4 ps-0">
+                <div v-if="resort.trailImgs?.length > 0" class="col-4 ps-0">
                     <div class="bg-blur h-100 p-2">
                         <div class="position-relative h-100 w-100">
 
@@ -41,7 +41,7 @@
                     </div>
                 </div>
 
-                <div :class="{'col-12': !resort.trailImgs[0], 'col-8': resort.trailImgs[0], 'pe-0': true}">
+                <div :class="{'col-12': !resort.trailImgs?.length > 0, 'col-8': resort.trailImgs?.length > 0, 'pe-0': true}">
                     <div class="row gy-3">
                         <div :class="[resort.lat ? 'col-6' : 'col-3', 'ps-0']">
                             <div class="bg-blur h-100">
