@@ -25,7 +25,7 @@
                 </div>
               </div>
             </div>
-            <div v-if="AppState.user.id == AppState.activeProfile.id" class="col-1 text-end">
+            <div v-if="user.id == account.id" class="col-1 text-end">
               <i @click="editAccount()" role="button" class="mdi mdi-pen fs-1"></i>
             </div>
           </section>
@@ -97,6 +97,7 @@ export default {
         });
         return {
             account: computed(() => AppState.activeProfile),
+            user: computed(() => AppState.account),
             ski: computed(() => AppState.activeProfileSki),
             snow: computed(() => AppState.activeProfileSno),
             resorts: computed(() => AppState.activeFavoritesResorts),
