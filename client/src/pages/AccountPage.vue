@@ -89,7 +89,7 @@ export default {
           }
           
         }
-        watch(AppState.activeProfile,() => {
+        watch(route.params.accountId,() => {
           AppState.activeFavoritesResorts = []
           AppState.activeProfile = {}
           backgroundImage('src/assets/img/AccountBg.jpg');
