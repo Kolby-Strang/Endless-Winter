@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { AppState } from '../AppState';
 import { useRoute } from "vue-router";
 import { accountService } from "../services/AccountService.js";
@@ -89,12 +89,12 @@ export default {
           }
           
         }
-        onMounted(() => {
+        watch(AppState.activeProfile,() => {
           AppState.activeFavoritesResorts = []
           AppState.activeProfile = {}
           backgroundImage('src/assets/img/AccountBg.jpg');
           getProfile();
-        });
+        },{immediate: true});
         return {
             account: computed(() => AppState.activeProfile),
             user: computed(() => AppState.account),
