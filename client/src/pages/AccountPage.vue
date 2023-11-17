@@ -9,8 +9,8 @@
             </div>
             <div class="col-6 p-3 d-flex flex-column justify-content-between">
               <div>
-                <input v-model="editable.name" :disabled="!isEditActive" type="text" class="form-control text-center fs-1" id="exampleFormControlInput1" placeholder="you need a name">
-                <input v-model="editable.bio" :disabled="!isEditActive" type="text" class="form-control text-center" id="exampleFormControlInput1" placeholder="enter bio here">
+                <input v-model="editable.name" :disabled="!isEditActive" type="text" class="form-control text-center fs-1" id="exampleFormControlInput1" placeholder="you need a name" required minlength="2" maxlength="50">
+                <input v-model="editable.bio" :disabled="!isEditActive" type="text" class="form-control text-center" id="exampleFormControlInput1" placeholder="enter bio here" maxlength="500">
               </div>
               <div>
                 <div v-if="!isEditActive" >
@@ -72,7 +72,7 @@ export default {
         async function editAccount(){
           AppState.isEditActive = !AppState.isEditActive
           if(!AppState.isEditActive){
-            await accountService.updateAccount()
+            await accountService.updateAccount(editable)
           }
           // logger.log(AppState.isEditActive)
         }
