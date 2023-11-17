@@ -1,5 +1,5 @@
 <template>
-    <div v-if="resort.id" class="row page-padding">
+    <div v-if="resort.id" class="row page-padding px-1 px-sm-3 px-md-5">
         <div :class="[(resort.lat ? 'col-lg-7' : ''), 'col-12 pb-3 pb-lg-0']">
             <div class="row gy-3">
                 <div class="col-12">
@@ -101,7 +101,7 @@
                 </div>
                 <div class="row">
                     <div v-for="forecast in weatherForecast.filter(forecast => forecast.date.toLocaleDateString() != currentWeather.date.toLocaleDateString())" :key="forecast.date" class="col forecast-item">
-                        <div class="text-center">
+                        <div class="text-center ">
                             <p class="fs-5 fs-md-4 m-0">{{ getDayAbbreviation(forecast.date.getDay()) }}</p>
                             <img class="img-fluid" :src="`src/assets/img/AerisIcons/${forecast.icon}`" :alt="forecast.weather">
                             <p class="m-0">{{ forecast.maxTempF }}°F</p>
@@ -249,6 +249,10 @@ export default {
 }
 .forecast-item{
     overflow-x: hidden;
+    border-right: solid rgb(102, 102, 102) 2px;
+}
+.forecast-item:last-child{
+    border-right: none;
 }
 
 </style>
