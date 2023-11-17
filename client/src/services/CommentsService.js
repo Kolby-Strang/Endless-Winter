@@ -5,6 +5,12 @@ import { api } from "./AxiosService.js"
 
 class CommentService {
 
+    async createComment() {
+        const res = await api.post(`api/comments`)
+        const newComment = new Comment(res.data)
+        AppState.comments.unshift(newComment)
+
+    }
     destroyComment(commentId) {
         const res = api.delete(`api/comments/${commentId}`)
         return res.data

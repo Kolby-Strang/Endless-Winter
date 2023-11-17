@@ -2,12 +2,12 @@
     <section class="row">
         <div class="col-8 p-3">
             <div v-if="post.account" class=" bg-blur p-3 post mt-5">
-                <div v-if="account.id == post.account.id" class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between">
                     <div>
                         <img class="profile-picture rounded-circle" :src="post.account.picture" alt="">
                         {{ post.account.name }}
                     </div>
-                    <div class="text-end dropstart">
+                    <div v-if="account.id == post.account.id" class="text-end dropstart">
                         <i class="mdi mdi-dots-horizontal fs-3" id="dropdownMenuButton1" type="button" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false"></i>
                         <div class="dropdown">
@@ -34,6 +34,16 @@
         </div>
         <div class="col-4 comments">
             <div class="mt-5 pt-3">
+                <div class="bg-blur mb-3 p-2 text-center align-items-center">
+                    <div class="d-flex">
+                        <img class="profile-picture rounded-circle" :src="account.picture" alt="profile picture">
+                        <form class="d-flex align-items-center w-100" @submit.prevent="createComment()">
+                            <textarea type="text" class="h-100 ms-2 w-100 bg-blur rounded-3 text-white"
+                                placeholder="     Input Comment"></textarea>
+                            <button type="submit" class="btn rounded-pill text-light ms-2">Make Comment</button>
+                        </form>
+                    </div>
+                </div>
                 <div v-for="comment in comments" :key="comment" class="bg-blur rounded">
                     <div class="d-flex  justify-content-between">
                         <div>
@@ -115,6 +125,7 @@ export default {
             comments: computed(() => AppState.comments),
             post: computed(() => AppState.activePost),
             account: computed(() => AppState.account),
+
             async destroyPost() {
                 try {
                     const confirm = await Pop.confirm('Are you sure you want to delete this post?');
@@ -144,6 +155,16 @@ export default {
                 }
             },
 
+            async createComment() {
+                try {
+                    const commentData =
+                        await commentsService.createComment()
+                } catch (error) {
+                    Pop.error(error)
+                }
+
+            },
+
             setComment(commentId) {
                 commentsService.setComment(commentId)
 
@@ -156,6 +177,19 @@ export default {
 
 
 <style lang="scss" scoped>
+.text-box-radius {
+    border-radius: 8% / 30%;
+}
+
+.btn {
+    border-color: black;
+    background-color: #27245485;
+}
+
+.btn:hover {
+    background-color: #27245460;
+}
+
 .profile-picture {
     height: 10vh;
     object-fit: cover;
