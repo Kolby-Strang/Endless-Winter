@@ -14,6 +14,14 @@
           </router-link>
         </div>
       </section>
+      <section class="row" v-if="reviews == []  " >
+        <div class="col-10" >
+          <p>
+            No Reviews
+          </p>
+        </div>
+
+      </section>
       <section v-for="review in reviews" :key="review.id" class="row justify-content-center mt-5">
         <div  class="col-10 bg-blur rounded  ">
           <section class="row text-light p-2 mt-1 ">
@@ -68,10 +76,7 @@ export default {
     }
   return { 
     reviews: computed(() => AppState.resortReviews),
-    computeStars(starCount) {
-      logger.log(starCount)
     }
-   }
   }
 };
 </script>

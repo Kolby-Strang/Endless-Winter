@@ -31,6 +31,7 @@ class ResortsService {
     const res = await api.get(`api/resorts/${resortId}/reviews`)
     const reviews = res.data.map(review => new Review(review))
     AppState.resortReviews = reviews
+  
   }
 
   async getFavoriteResorts(favorites) {

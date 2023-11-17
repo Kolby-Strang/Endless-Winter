@@ -47,7 +47,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, watch } from 'vue';
 import Pop from "../utils/Pop";
 import { resortsService } from "../services/ResortsService";
 import { useRoute } from "vue-router";
@@ -61,6 +61,9 @@ export default {
           backgroundImage('src/assets/img/hero.jpg')
           getResort();
         });
+        watch(AppState.resortReviews, () => {
+          logger.log('reviews')
+        })
         async function getResort() {
           try {
             const resortId = route.params.resortId;
@@ -78,7 +81,8 @@ export default {
         }
         return {
           route,
-            resort: computed(() => AppState.activeResort)
+            resort: computed(() => AppState.activeResort),
+            reviews: computed(() => AppState.resortReviews)
         };
     },
     components: { PercentageBar }

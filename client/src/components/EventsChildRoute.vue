@@ -19,7 +19,7 @@
           <section class="row img-bg rounded align-content-end " style="background-image: 
           url(https://media.bogusbasin.org/uploads/2023/05/06114223/FirstChairBannerWithRiders2023-ByLukeTokunaga.jpg);">
             <div class="col-12">
-              <section class="row linear-bg align-content-end">
+              <section class="row linear-bg rounded align-content-end">
                 <div class="col-12">
                   <section class="row justify-content-center ">
                     <div class="col-11 blur-bg rounded mb-2 text-light " >
