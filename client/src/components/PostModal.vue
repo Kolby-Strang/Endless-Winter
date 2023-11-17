@@ -39,9 +39,7 @@
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, reactive, onMounted, ref} from 'vue';
-import { logger } from "../utils/Logger";
+import { ref} from 'vue';
 import Pop from "../utils/Pop";
 import { Modal } from "bootstrap";
 import { postsService } from "../services/PostsService";
