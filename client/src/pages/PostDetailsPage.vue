@@ -34,9 +34,9 @@
         </div>
         <div class="col-4 comments">
             <div class="mt-5 pt-3">
-                <div class="bg-blur mb-3 p-2 text-center align-items-center">
+                <div v-if="account.id" class="bg-blur mb-3 p-3 text-center align-items-center">
                     <div class="d-flex">
-                        <img class="profile-picture rounded-circle" :src="account.picture" alt="profile picture">
+                        <img class="comment-picture rounded-circle" :src="account.picture" alt="profile picture">
                         <form class="d-flex align-items-center w-100" @submit.prevent="createComment()">
                             <textarea v-model="editable.body" type="text" name="body"
                                 class="h-100 ms-2 w-100 bg-blur rounded-3 text-white"
@@ -225,5 +225,11 @@ export default {
 
 .comments::-webkit-scrollbar {
     display: none;
+}
+
+.comment-picture {
+    height: 6.5vh;
+    object-fit: cover;
+    object-position: center;
 }
 </style>

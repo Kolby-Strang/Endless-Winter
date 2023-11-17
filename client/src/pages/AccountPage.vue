@@ -13,7 +13,7 @@
                 <textarea v-model="editable.bio" :disabled="!isEditActive" class="form-control text-center input" id="exampleFormControlInput1" placeholder="enter bio here" maxlength="500"></textarea>
               </div>
               <div>
-                <div v-if="!isEditActive" >
+                <div v-if="!isEditActive">
                   <i v-if="ski" class="mdi mdi-ski fs-icon color-0"></i>
                   <i v-if="snow" class="mdi mdi-snowboard fs-icon color-1"></i>
                 </div>
@@ -25,7 +25,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-1 text-end">
+            <div v-if="user.id == account.id" class="col-1 text-end">
               <i @click="editAccount()" role="button" class="mdi mdi-pen fs-1"></i>
             </div>
           </section>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { AppState } from '../AppState';
 import { useRoute } from "vue-router";
 import { accountService } from "../services/AccountService.js";
@@ -59,6 +59,7 @@ export default {
     setup() {
         const editable = ref({})
         const route = useRoute();
+        const watchableAccountId = computed(()=>route.params.accountId)
         function backgroundImage() {
             const body = document.getElementById('body');
             body.style.backgroundImage = `url('${AppState.bgImages.account}')`;
@@ -89,14 +90,15 @@ export default {
           }
           
         }
-        onMounted(() => {
+        watch(watchableAccountId,() => {
           AppState.activeFavoritesResorts = []
           AppState.activeProfile = {}
           backgroundImage();
           getProfile();
-        });
+        },{immediate: true});
         return {
             account: computed(() => AppState.activeProfile),
+            user: computed(() => AppState.account),
             ski: computed(() => AppState.activeProfileSki),
             snow: computed(() => AppState.activeProfileSno),
             resorts: computed(() => AppState.activeFavoritesResorts),
