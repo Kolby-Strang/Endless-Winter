@@ -4,7 +4,7 @@
     <div class="col-10 bg-blur rounded">
       <router-link title="Resort Details" class="text-light" :to="{name: 'ResortDetails', params: {resortId: route.params.resortId}}">
       <section class="row p-1 ">
-        <div class="col-11 text-light">
+        <div class="col-10 text-light">
             <p class="fs-1 mb-0 d-inline">
               {{ resort.resortName }}
             </p> 
@@ -15,9 +15,11 @@
             {{ `${resort.state}, ${resort.country}` }}
           </p>
         </div>
-        <div class="col-1 text-end ">
-          <div class="">
-          <i class="fs-2 mdi mdi-star"></i>
+        <div class="col-2 text-end ">
+          <div  class="">
+            <span v-for="i in Math.round(averageStarRating)" :key="i">
+              <i class="fs-2 mdi mdi-star star-color"></i>
+          </span>
         </div>
       </div>
         <div v-if="resort.resortImg" class="col-12">
@@ -62,8 +64,9 @@ export default {
           backgroundImage()
           getResort();
         });
-        watch(AppState.resortReviews, () => {
-          logger.log('reviews')
+        watch(() => AppState.resortReviews, () => {
+          logger.log('Watching resort reviews')
+          
         })
         async function getResort() {
           try {
@@ -83,7 +86,19 @@ export default {
         return {
           route,
             resort: computed(() => AppState.activeResort),
-            reviews: computed(() => AppState.resortReviews)
+            reviews: computed(() => AppState.resortReviews),
+            averageStarRating: computed(() => {
+              const reviews = AppState.resortReviews;
+              let totalStars = 0;
+
+              for (const review of reviews) {
+                totalStars += review.starCount
+              }
+
+              const average = reviews.length > 0 ? totalStars / reviews.length : 0;
+
+              return average;
+            }),
         };
     },
     components: { PercentageBar }
@@ -101,6 +116,9 @@ export default {
 }
 
 
+.star-color {
+  color: #BDCFF3;
+}
 
 .margin {
   margin-top: 5rem;
