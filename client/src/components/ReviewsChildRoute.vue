@@ -35,7 +35,6 @@
               <section class="row justify-content-center">
                 <div class="col-10">
                   <p class="mx-5 fs-5">{{ review.body }}</p>
-
                 </div>
 
               </section>
@@ -49,11 +48,10 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute } from "vue-router";
 import Pop from "../utils/Pop";
 import { resortsService } from "../services/ResortsService";
-import { logger } from "../utils/Logger";
 export default {
   setup(){
     const route = useRoute()
