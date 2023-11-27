@@ -70,6 +70,9 @@ export default {
             await accountService.getProfile(route.params.accountId);
             editable.value = AppState.activeProfile
         }
+        async function getPosts() {
+            await accountService.getPosts();
+        }
         async function editAccount(){
           AppState.isEditActive = !AppState.isEditActive
           if(!AppState.isEditActive){
@@ -95,6 +98,7 @@ export default {
           AppState.activeProfile = {}
           backgroundImage('src/assets/img/AccountBg.jpg');
           getProfile();
+          getPosts();
         },{immediate: true});
         return {
             account: computed(() => AppState.activeProfile),
