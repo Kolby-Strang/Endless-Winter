@@ -20,9 +20,9 @@ import FavoriteResortCard from "../components/FavoriteResortCard.vue";
 
 export default {
     setup() {
-        function backgroundImage(imgUrl) {
+      function backgroundImage() {
             const body = document.getElementById('body');
-            body.style.backgroundImage = `url('${imgUrl}')`;
+            body.style.backgroundImage = `url('${AppState.bgImages.hero}')`;
             body.style.backgroundSize = 'cover';
             body.style.backgroundPosition = 'center';
         }
@@ -30,7 +30,7 @@ export default {
             await resortsService.getResortById(208001);
         }
         onMounted(() => {
-            backgroundImage('src/assets/img/hero.jpg');
+            backgroundImage();
             getResortBogus();
         });
         return {

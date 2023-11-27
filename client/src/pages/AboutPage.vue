@@ -27,8 +27,20 @@
 </template>
 
 <script>
+import { onMounted } from 'vue';
+import{AppState} from '../AppState'
+
 export default {
   setup() {
+    function backgroundImage() {
+            const body = document.getElementById('body');
+            body.style.backgroundImage = `url('${AppState.bgImages.hero}')`;
+            body.style.backgroundSize = 'cover';
+            body.style.backgroundPosition = 'center';
+        }
+        onMounted(()=>{
+          backgroundImage()
+        })
     return {
 
     }

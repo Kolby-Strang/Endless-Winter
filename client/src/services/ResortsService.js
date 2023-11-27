@@ -38,10 +38,7 @@ class ResortsService {
     AppState.activeFavoritesResorts = []
     logger.log(favorites)
     for (let i = 0; i < favorites?.length; i++) {
-      // logger.log(favorites[i])
-      const res = await resortsApi.get(`/getSnowReport.php`, { params: { ids: favorites[i].snoId } })
-      // logger.log(res.data)
-      AppState.activeFavoritesResorts.push(new Resort(res.data.items[0]))
+      AppState.activeFavoritesResorts.push(await this.getResortById(favorites[i].snoId))
     }
   }
 

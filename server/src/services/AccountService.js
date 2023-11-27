@@ -65,7 +65,7 @@ class AccountService {
     })
     account = await createAccountIfNeeded(account, user)
     await mergeSubsIfNeeded(account, user)
-    return account
+    return await account.populate('favorites')
   }
 
   async getAccountById(accountId) {

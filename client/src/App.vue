@@ -7,6 +7,7 @@
   </main>
   <!-- <footer class="bg-dark text-light">
   </footer> -->
+  <ReviewModal />
   <PostModal />
   <EditPostModal />
 </template>
@@ -17,14 +18,15 @@ import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import EditPostModal from './components/EditPostModal.vue'
 import EditCommentModal from './components/EditCommentModal.vue'
-
+import ReviewModal from '../src/components/ReviewModal.vue'
+import PostModal from "./components/PostModal.vue"
 export default {
   setup() {
     return {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, EditPostModal, EditCommentModal }
+  components: { Navbar, EditPostModal, PostModal, ReviewModal, EditCommentModal,  }
 }
 </script>
 <style lang="scss">

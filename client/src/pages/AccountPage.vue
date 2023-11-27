@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { AppState } from '../AppState';
 import { useRoute } from "vue-router";
 import { accountService } from "../services/AccountService.js";
@@ -60,9 +60,9 @@ export default {
         const editable = ref({})
         const route = useRoute();
         const watchableAccountId = computed(()=>route.params.accountId)
-        function backgroundImage(imgUrl) {
+        function backgroundImage() {
             const body = document.getElementById('body');
-            body.style.backgroundImage = `url('${imgUrl}')`;
+            body.style.backgroundImage = `url('${AppState.bgImages.account}')`;
             body.style.backgroundSize = 'cover';
             body.style.backgroundPosition = 'center';
         }
@@ -96,7 +96,7 @@ export default {
         watch(watchableAccountId,() => {
           AppState.activeFavoritesResorts = []
           AppState.activeProfile = {}
-          backgroundImage('src/assets/img/AccountBg.jpg');
+          backgroundImage();
           getProfile();
           getPosts();
         },{immediate: true});

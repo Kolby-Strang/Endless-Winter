@@ -18,9 +18,14 @@
                 Manage Account
               </div>
             </router-link>
-            <div v-if="postModal" class="list-group-item dropdown-item list-group-item-action" role="button" data-bs-toggle="modal" data-bs-target="#postModal">
-              Create Post
-            </div>
+            <span v-if="postModal">
+              <div  class="list-group-item dropdown-item list-group-item-action" role="button" data-bs-toggle="modal" data-bs-target="#postModal">
+                Create a Post
+              </div>
+              <div  class="list-group-item dropdown-item list-group-item-action" role="button" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                Create a Review
+              </div>
+            </span>
             <router-link :to="{ name: 'About' }">
             <div class="list-group-item dropdown-item list-group-item-action">
               About us
