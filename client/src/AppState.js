@@ -26,8 +26,10 @@ export const AppState = reactive({
   commentToBeEdited: {},
   isEditActive: false,
   bgImages: {
+    
     hero: "src/assets/img/hero.jpg",
     account: "src/assets/img/account.jpg",
     search: "src/assets/img/search.jpg",
-  }
+  },
+  bgKey: 'purple'
 })
