@@ -8,7 +8,7 @@ export const api = Axios.create({
 })
 
 export const resortsApi = Axios.create({
-  baseURL: 'http://feeds.snocountry.net',
+  baseURL: 'https://feeds.snocountry.net',
   params:{
     'apiKey': 'SnoCountry.example'
   }
