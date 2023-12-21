@@ -26,7 +26,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, EditPostModal, PostModal, ReviewModal, EditCommentModal,  }
+  components: { Navbar, EditPostModal, PostModal, ReviewModal }
 }
 </script>
 <style lang="scss">
