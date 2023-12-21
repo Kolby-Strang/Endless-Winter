@@ -10,9 +10,8 @@
           <p class="mb-0">{{ resort.snowComments }}</p>
           <p class="">{{ resort.primarySurfaceCondition }}</p>
         </div>
-      <!-- TODO weather -->
       <div v-if="weather.icon" class="col-4 d-flex flex-column align-items-center justify-content-center py-2">
-        <img class="weather-icon" :src="`src/assets/img/AerisIcons/${weather.icon}`" :alt="weather.weather">
+        <img class="weather-icon" :src="`/src/assets/img/AerisIcons/${weather.icon}`" :alt="weather.weather">
         <p class="mb-0 fs-3">{{ weather.tempF.toFixed(0) }}°F</p>
       </div>
     </section>
