@@ -69,7 +69,7 @@ export default {
 
     }
   },
-  components: { Login, PostModal }
+  components: { Login }
 }
 </script>
 
