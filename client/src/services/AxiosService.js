@@ -8,7 +8,7 @@ export const api = Axios.create({
 })
 
 export const resortsApi = Axios.create({
-  baseURL: 'http://feeds.snocountry.net',
+  baseURL: 'https://feeds.snocountry.net',
   params:{
     'apiKey': 'SnoCountry.example'
   }
@@ -18,8 +18,8 @@ export const resortsApi = Axios.create({
 export const weatherApi = Axios.create({
   baseURL: 'https://api.aerisapi.com/',
   params:{
-    client_id: 'ITG2fTgz0yxypLLblGBBu',
-    client_secret: 'ruUibRn1x3wWhk9bTlcPQvUeMoFPenRZSgZWmhLz',
+    client_id: 'NQUHVWuPPofhyAw0NK0zn',
+    client_secret: 'eyI5PilDdX7KN8FjeXNNNeO5aLevb0lJUJ5IB365',
     format: 'json'
   }
 })

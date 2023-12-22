@@ -85,7 +85,7 @@
             <div class="bg-blur h-100 container-fluid d-flex flex-column justify-content-between">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <img class="weather-icon" :src="`src/assets/img/AerisIcons/${currentWeather.icon}`" :alt="currentWeather.weather" :title="currentWeather.weather">
+                        <img class="weather-icon" :src="`https://cdn.aerisapi.com/wxicons/v2/${currentWeather.icon}`" :alt="currentWeather.weather" :title="currentWeather.weather">
                         <p class="fs-1 m-0">{{currentWeather.tempF.toFixed(0)}}°F</p>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                     <div v-for="forecast in weatherForecast.filter(forecast => forecast.date.toLocaleDateString() != currentWeather.date.toLocaleDateString())" :key="forecast.date" class="col forecast-item">
                         <div class="text-center ">
                             <p class="fs-5 fs-md-4 m-0">{{ getDayAbbreviation(forecast.date.getDay()) }}</p>
-                            <img class="img-fluid" :src="`src/assets/img/AerisIcons/${forecast.icon}`" :alt="forecast.weather">
+                            <img class="img-fluid" :src="`https://cdn.aerisapi.com/wxicons/v2/${forecast.icon}`" :alt="forecast.weather">
                             <p class="m-0">{{ forecast.maxTempF }}°F</p>
                         </div>
                     </div>
@@ -135,6 +135,7 @@ import {resortsService} from '../services/ResortsService'
 import {weatherService} from '../services/WeatherService'
 import Pop from '../utils/Pop';
 import { AppState } from '../AppState';
+
 export default {
     setup(){
         // VARIABLES
@@ -177,7 +178,7 @@ export default {
         currentWeather,
         weatherForecast,
         copyText,
-        getDayAbbreviation
+        getDayAbbreviation,
      }
     }
 };
