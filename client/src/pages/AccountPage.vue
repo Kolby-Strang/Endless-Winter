@@ -99,7 +99,7 @@ export default {
           AppState.activeProfile = {}
           backgroundImage();
           getProfile();
-          getPosts();
+          // getPosts();
         },{immediate: true});
         return {
             account: computed(() => AppState.activeProfile),
