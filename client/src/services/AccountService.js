@@ -27,6 +27,11 @@ class AccountService {
 
   async updateAccount(editable) {
     const res = await api.put(`/account`, editable)
+    // logger.log(res.data)
+  }
+
+  async getPosts() {
+    const res = await api.get(`/account/posts`)
     logger.log(res.data)
   }
 }
