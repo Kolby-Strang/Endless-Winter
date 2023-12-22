@@ -26,7 +26,8 @@
               </div>
             </div>
             <div v-if="user.id == account.id" class="col-1 text-end">
-              <i @click="editAccount()" role="button" class="mdi mdi-pen fs-1"></i>
+              <i v-if="isEditActive" @click="editAccount()" role="button" class="mdi mdi-pen fs-1 text-primary"></i>
+              <i v-else @click="editAccount()" role="button" class="mdi mdi-pen fs-1"></i>
             </div>
           </section>
         </div>
@@ -98,7 +99,7 @@ export default {
           AppState.activeProfile = {}
           backgroundImage();
           getProfile();
-          getPosts();
+          // getPosts();
         },{immediate: true});
         return {
             account: computed(() => AppState.activeProfile),
