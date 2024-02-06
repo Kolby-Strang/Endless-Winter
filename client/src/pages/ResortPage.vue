@@ -123,4 +123,5 @@ export default {
 .margin {
   margin-top: 5rem;
 }
+  
 </style>
